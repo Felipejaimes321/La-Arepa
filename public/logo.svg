@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 85" fill="none">
+  <!-- Background transparent -->
+
+  <!-- "La " text -->
+  <text x="4" y="56"
+    font-family="'Arial Rounded MT Bold','Nunito','Arial Black',sans-serif"
+    font-size="50" font-weight="900"
+    fill="#7DC242"
+    stroke="white" stroke-width="5" paint-order="stroke fill"
+    letter-spacing="-1">La</text>
+
+  <!-- "Arep" text -->
+  <text x="88" y="56"
+    font-family="'Arial Rounded MT Bold','Nunito','Arial Black',sans-serif"
+    font-size="50" font-weight="900"
+    fill="#7DC242"
+    stroke="white" stroke-width="5" paint-order="stroke fill"
+    letter-spacing="-1">Arep</text>
+
+  <!-- Chorizo illustration replacing final "a" -->
+  <!-- positioned at end of "Arep" roughly x=258 -->
+  <g transform="translate(258, 2)">
+    <!-- Steam wisps -->
+    <path d="M10 14 Q13 9 10 4" stroke="#7DC242" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <path d="M17 12 Q20 7 17 2" stroke="#7DC242" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <path d="M24 14 Q27 9 24 4" stroke="#7DC242" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Sausage body — tilted chorizo -->
+    <g transform="translate(4, 16) rotate(-8)">
+      <!-- Main body -->
+      <rect x="0" y="0" width="28" height="50" rx="14" fill="#C8382A"/>
+      <!-- Top cap -->
+      <ellipse cx="14" cy="2" rx="9" ry="5" fill="#8B1A0A"/>
+      <!-- Bottom cap -->
+      <ellipse cx="14" cy="48" rx="9" ry="5" fill="#8B1A0A"/>
+      <!-- Highlight -->
+      <rect x="6" y="8" width="7" height="22" rx="3.5" fill="#E05545" opacity="0.55"/>
+      <!-- Texture lines -->
+      <line x1="5" y1="18" x2="23" y2="18" stroke="#8B1A0A" stroke-width="1" opacity="0.4"/>
+      <line x1="5" y1="28" x2="23" y2="28" stroke="#8B1A0A" stroke-width="1" opacity="0.4"/>
+      <line x1="5" y1="38" x2="23" y2="38" stroke="#8B1A0A" stroke-width="1" opacity="0.4"/>
+    </g>
+  </g>
+
+  <!-- "chorizos & bebidas" subtitle -->
+  <text x="4" y="76"
+    font-family="'Arial','Helvetica',sans-serif"
+    font-size="15" font-weight="400"
+    fill="white" letter-spacing="0.3" opacity="0.85">chorizos &amp; bebidas</text>
+</svg>
