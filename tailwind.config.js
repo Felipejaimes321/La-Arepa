@@ -8,22 +8,21 @@ export default {
     extend: {
       colors: {
         brand: {
-          green:   '#7DC242',
-          lime:    '#9ED45A',
-          red:     '#C8382A',
-          gold:    '#C9A227',
-          dark:    '#111111',
-          card:    '#1C1C1C',
-          border:  '#2A2A2A',
+          primary: '#D62B2B',
+          bg:      '#FAFAFA',
+          dark:    '#1A1A1A',
+          card:    '#FFFFFF',
+          border:  '#E5E5E5',
+          muted:   '#F0EBE0',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'system-ui', 'sans-serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Barlow Condensed', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'fade-up': 'fadeUp 0.6s ease-out forwards',
-        'float':   'float 3s ease-in-out infinite',
+        'fade-up':    'fadeUp 0.6s ease-out forwards',
+        'float':      'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 3s ease-in-out infinite',
       },
       keyframes: {

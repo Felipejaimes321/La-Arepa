@@ -57,27 +57,27 @@ function Navbar() {
   }, [])
   const links = [['Menú','#menu'],['Puntos','#puntos'],['Franquicias','#franquicias']]
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#111]/90 backdrop-blur-md border-b border-white/5' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md border-b border-[#E5E5E5]' : 'bg-transparent'}`}>
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
         <Logo size="sm" />
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {links.map(([l, h]) => (
-            <a key={l} href={h} className="text-white/60 hover:text-white transition-colors">{l}</a>
+            <a key={l} href={h} className="text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors">{l}</a>
           ))}
         </div>
-        <button onClick={() => nav('/demo')} className="hidden md:block bg-[#7DC242] text-[#111] font-bold px-5 py-2 rounded-full text-sm hover:bg-[#9ED45A] transition-all hover:scale-105 active:scale-95">
+        <button onClick={() => nav('/demo')} className="hidden md:block bg-[#D62B2B] text-white font-bold px-5 py-2 rounded-full text-sm hover:bg-[#B82222] transition-all hover:scale-105 active:scale-95">
           Ingresar
         </button>
-        <button className="md:hidden text-white p-1" onClick={() => setOpen(!open)}>
+        <button className="md:hidden text-[#1A1A1A] p-1" onClick={() => setOpen(!open)}>
           {open ? <X size={22}/> : <MenuIcon size={22}/>}
         </button>
       </div>
       {open && (
-        <div className="md:hidden bg-[#111]/95 backdrop-blur-md border-t border-white/5 px-5 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-white border-t border-[#E5E5E5] px-5 py-4 flex flex-col gap-4">
           {links.map(([l, h]) => (
-            <a key={l} href={h} className="text-white/70 text-sm font-medium" onClick={() => setOpen(false)}>{l}</a>
+            <a key={l} href={h} className="text-[#1A1A1A]/70 text-sm font-medium" onClick={() => setOpen(false)}>{l}</a>
           ))}
-          <button onClick={() => nav('/demo')} className="bg-[#7DC242] text-[#111] font-bold px-4 py-2.5 rounded-full text-sm">Ingresar</button>
+          <button onClick={() => nav('/demo')} className="bg-[#D62B2B] text-white font-bold px-4 py-2.5 rounded-full text-sm">Ingresar</button>
         </div>
       )}
     </nav>
@@ -87,52 +87,47 @@ function Navbar() {
 /* ── Hero ────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center text-center px-5 bg-grid overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#111] to-[#111]" />
-      {/* Glow blobs */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#7DC242]/8 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-20 w-64 h-64 bg-[#C8382A]/6 rounded-full blur-3xl pointer-events-none" />
+    <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center text-center px-5 bg-grid overflow-hidden" style={{background:'#FAFAFA'}}>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F0E8] via-[#FAFAFA] to-[#FAFAFA]" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#D62B2B]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-20 w-64 h-64 bg-[#D62B2B]/4 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl mx-auto">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 border border-[#C9A227]/40 rounded-full px-4 py-1.5 text-[#C9A227] text-xs font-semibold tracking-widest uppercase mb-8">
+        <div className="inline-flex items-center gap-2 border border-[#D62B2B]/30 rounded-full px-4 py-1.5 text-[#D62B2B] text-xs font-semibold tracking-widest uppercase mb-8">
           Sabor Colombiano Auténtico
         </div>
 
-        {/* Heading */}
         <h1 className="font-display font-black text-5xl md:text-7xl leading-[1.05] mb-6">
-          <span className="text-white">La arepa que</span><br />
+          <span className="text-[#1A1A1A]">La arepa que</span><br />
           <span className="gradient-gold">Colombia merece</span>
         </h1>
 
-        <p className="text-white/50 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="text-[#1A1A1A]/50 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
           Más de 50 puntos de venta en toda la ciudad. Arepas rellenas, con huevo, chorizo, jamón y mucho más.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <a href="#menu" className="bg-white text-[#111] font-bold px-8 py-4 rounded-xl text-base hover:bg-[#f5f5f5] transition-all hover:scale-105 active:scale-95">
+          <a href="#menu" className="bg-[#D62B2B] text-white font-bold px-8 py-4 rounded-xl text-base hover:bg-[#B82222] transition-all hover:scale-105 active:scale-95">
             Ver el menú
           </a>
-          <a href="#puntos" className="border border-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base hover:bg-white/5 transition-all">
+          <a href="#puntos" className="border border-[#1A1A1A]/20 text-[#1A1A1A] font-semibold px-8 py-4 rounded-xl text-base hover:bg-[#1A1A1A]/5 transition-all">
             Encuentra tu punto
           </a>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 max-w-sm mx-auto border-t border-white/8 pt-10">
+        <div className="grid grid-cols-3 gap-8 max-w-sm mx-auto border-t border-[#1A1A1A]/8 pt-10">
           {[['12+','Años de sabor'],['50+','Puntos de venta'],['100%','Sabor colombiano']].map(([n, l]) => (
             <div key={n} className="text-center">
               <div className="font-display font-black text-3xl gradient-gold">{n}</div>
-              <div className="text-white/40 text-xs mt-1 leading-snug">{l}</div>
+              <div className="text-[#1A1A1A]/40 text-xs mt-1 leading-snug">{l}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-bounce">
-        <div className="w-5 h-9 border border-white/20 rounded-full flex justify-center pt-1.5">
-          <div className="w-1 h-2 bg-white/30 rounded-full" />
+        <div className="w-5 h-9 border border-[#1A1A1A]/20 rounded-full flex justify-center pt-1.5">
+          <div className="w-1 h-2 bg-[#1A1A1A]/25 rounded-full" />
         </div>
       </div>
     </section>
@@ -148,19 +143,18 @@ function MenuSection() {
   const filtered = cat === 'Todos' ? PRODUCTS : PRODUCTS.filter(p => catMap[cat]?.includes(p.name))
 
   return (
-    <section id="menu" className="py-24 px-5 bg-[#111]">
+    <section id="menu" className="py-24 px-5" style={{background:'#FAFAFA'}}>
       <div className="max-w-5xl mx-auto section-fade" ref={ref}>
         <div className="text-center mb-12">
-          <span className="text-[#C9A227] text-xs font-semibold tracking-widest uppercase">Nuestros productos</span>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-3">El menú</h2>
-          <p className="text-white/40 mt-3 max-w-lg mx-auto">Hecho con ingredientes frescos, preparado con amor. Igual de rico en todos nuestros puntos.</p>
+          <span className="text-[#D62B2B] text-xs font-semibold tracking-widest uppercase">Nuestros productos</span>
+          <h2 className="font-display font-black text-4xl md:text-5xl text-[#1A1A1A] mt-3">El menú</h2>
+          <p className="text-[#1A1A1A]/40 mt-3 max-w-lg mx-auto">Hecho con ingredientes frescos, preparado con amor. Igual de rico en todos nuestros puntos.</p>
         </div>
 
-        {/* Category filter */}
         <div className="flex justify-center gap-2 mb-10 flex-wrap">
           {cats.map(c => (
             <button key={c} onClick={() => setCat(c)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${cat === c ? 'bg-[#7DC242] text-[#111]' : 'border border-white/10 text-white/50 hover:border-white/25 hover:text-white'}`}>
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${cat === c ? 'bg-[#D62B2B] text-white' : 'border border-[#1A1A1A]/12 text-[#1A1A1A]/50 hover:border-[#1A1A1A]/25 hover:text-[#1A1A1A]'}`}>
               {c}
             </button>
           ))}
@@ -168,11 +162,11 @@ function MenuSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((p) => (
-            <div key={p.name} className="bg-[#1C1C1C] border border-[#2A2A2A] rounded-2xl p-5 card-hover cursor-default">
+            <div key={p.name} className="bg-white border border-[#E5E5E5] rounded-2xl p-5 card-hover cursor-default">
               <div className="text-4xl mb-3">{p.emoji}</div>
-              <div className="font-semibold text-white text-sm leading-snug mb-1">{p.name}</div>
-              <div className="text-white/35 text-xs mb-3 leading-relaxed">{p.desc}</div>
-              <div className="font-display font-bold text-[#C9A227] text-lg">${p.price.toLocaleString('es-CO')}</div>
+              <div className="font-semibold text-[#1A1A1A] text-sm leading-snug mb-1">{p.name}</div>
+              <div className="text-[#1A1A1A]/40 text-xs mb-3 leading-relaxed">{p.desc}</div>
+              <div className="font-display font-bold text-[#D62B2B] text-lg">${p.price.toLocaleString('es-CO')}</div>
             </div>
           ))}
         </div>
@@ -194,50 +188,45 @@ function MapSection() {
   const featured = PUNTOS.slice(0, 3)
 
   return (
-    <section id="puntos" className="py-24 px-5 bg-[#0E0E0E]">
+    <section id="puntos" className="py-24 px-5" style={{background:'#F0EBE0'}}>
       <div className="max-w-5xl mx-auto section-fade" ref={ref}>
         <div className="mb-12">
-          <span className="text-[#C9A227] text-xs font-semibold tracking-widest uppercase">Encuéntranos</span>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-3">El punto más cercano</h2>
-          <p className="text-white/40 mt-2 max-w-xl">Más de 50 puntos en toda la ciudad. Ingresa tu dirección y encuentra el más cercano.</p>
+          <span className="text-[#D62B2B] text-xs font-semibold tracking-widest uppercase">Encuéntranos</span>
+          <h2 className="font-display font-black text-4xl md:text-5xl text-[#1A1A1A] mt-3">El punto más cercano</h2>
+          <p className="text-[#1A1A1A]/40 mt-2 max-w-xl">Más de 50 puntos en toda la ciudad. Ingresa tu dirección y encuentra el más cercano.</p>
         </div>
 
-        {/* Map box */}
-        <div className="relative bg-[#161616] border border-[#2A2A2A] rounded-2xl overflow-hidden mb-6" style={{height: 340}}>
-          {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-10" style={{backgroundImage:'linear-gradient(#7DC242 1px,transparent 1px),linear-gradient(90deg,#7DC242 1px,transparent 1px)',backgroundSize:'36px 36px'}} />
+        <div className="relative bg-white border border-[#E5E5E5] rounded-2xl overflow-hidden mb-6" style={{height: 340}}>
+          <div className="absolute inset-0 opacity-5" style={{backgroundImage:'linear-gradient(#D62B2B 1px,transparent 1px),linear-gradient(90deg,#D62B2B 1px,transparent 1px)',backgroundSize:'36px 36px'}} />
 
-          {/* Search bar on map */}
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-80">
-            <div className="flex items-center gap-2 bg-[#1C1C1C] border border-[#333] rounded-xl px-4 py-3 shadow-lg">
-              <div className="w-2 h-2 bg-[#7DC242] rounded-full flex-shrink-0" />
+            <div className="flex items-center gap-2 bg-white border border-[#E5E5E5] rounded-xl px-4 py-3 shadow-sm">
+              <div className="w-2 h-2 bg-[#D62B2B] rounded-full flex-shrink-0" />
               <input value={search} onChange={e => setSearch(e.target.value)}
                 placeholder="Buscar por dirección o barrio..."
-                className="bg-transparent text-white text-sm flex-1 focus:outline-none placeholder-white/35" />
+                className="bg-transparent text-[#1A1A1A] text-sm flex-1 focus:outline-none placeholder-[#1A1A1A]/30" />
             </div>
           </div>
 
-          {/* Pins */}
           {filtered.map(p => (
             <button key={p.id} onClick={() => setSel(p)}
               className="absolute group"
               style={{left:`${p.x}%`, top:`${p.y}%`, transform:'translate(-50%,-50%)'}}>
               <div className="relative">
-                <div className={`w-4 h-4 rounded-full border-2 transition-all ${sel?.id === p.id ? 'scale-150 bg-[#7DC242] border-white' : 'bg-[#C9A227] border-[#E5C060] hover:scale-125'}`} />
-                {sel?.id === p.id && <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#7DC242]/40 ping2" />}
+                <div className={`w-4 h-4 rounded-full border-2 transition-all ${sel?.id === p.id ? 'scale-150 bg-[#D62B2B] border-white' : 'bg-[#D62B2B]/70 border-[#D62B2B] hover:scale-125'}`} />
+                {sel?.id === p.id && <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#D62B2B]/30 ping2" />}
               </div>
             </button>
           ))}
 
-          {/* Selected tooltip */}
           {sel && (
-            <div className="absolute bottom-4 left-4 right-4 bg-[#1C1C1C] border border-[#7DC242]/30 rounded-xl p-4">
+            <div className="absolute bottom-4 left-4 right-4 bg-white border border-[#D62B2B]/20 rounded-xl p-4 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="font-semibold text-white text-sm">{sel.name}</div>
-                  <div className="text-white/40 text-xs mt-0.5">{sel.dir}</div>
+                  <div className="font-semibold text-[#1A1A1A] text-sm">{sel.name}</div>
+                  <div className="text-[#1A1A1A]/40 text-xs mt-0.5">{sel.dir}</div>
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${sel.open ? 'bg-[#7DC242]/15 text-[#7DC242]' : 'bg-white/5 text-white/40'}`}>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${sel.open ? 'bg-[#D62B2B]/10 text-[#D62B2B]' : 'bg-[#1A1A1A]/5 text-[#1A1A1A]/40'}`}>
                   {sel.open ? 'Abierto ahora' : 'Cerrado'}
                 </span>
               </div>
@@ -245,14 +234,13 @@ function MapSection() {
           )}
         </div>
 
-        {/* Featured cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {featured.map(p => (
             <div key={p.id} onClick={() => setSel(p)}
-              className="bg-[#1C1C1C] border border-[#2A2A2A] rounded-xl p-4 cursor-pointer hover:border-[#7DC242]/30 transition-all">
-              <div className="font-semibold text-white text-sm mb-0.5">{p.name}</div>
-              <div className="text-white/40 text-xs mb-3">{p.dir}</div>
-              <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${p.open ? 'bg-[#7DC242]/10 text-[#7DC242]' : 'bg-white/5 text-white/40'}`}>
+              className="bg-white border border-[#E5E5E5] rounded-xl p-4 cursor-pointer hover:border-[#D62B2B]/30 transition-all">
+              <div className="font-semibold text-[#1A1A1A] text-sm mb-0.5">{p.name}</div>
+              <div className="text-[#1A1A1A]/40 text-xs mb-3">{p.dir}</div>
+              <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${p.open ? 'bg-[#D62B2B]/10 text-[#D62B2B]' : 'bg-[#1A1A1A]/5 text-[#1A1A1A]/40'}`}>
                 {p.open ? 'Abierto ahora' : 'Cierra 8pm'}
               </span>
             </div>
@@ -270,17 +258,16 @@ function Franquicias() {
   const [sent, setSent] = useState(false)
 
   return (
-    <section id="franquicias" className="py-24 px-5 bg-[#111]">
+    <section id="franquicias" className="py-24 px-5" style={{background:'#FAFAFA'}}>
       <div className="max-w-5xl mx-auto section-fade" ref={ref}>
-        <div className="bg-[#1C1C1C] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+        <div className="bg-white border border-[#E5E5E5] rounded-2xl overflow-hidden shadow-sm">
           <div className="grid md:grid-cols-2">
-            {/* Left */}
             <div className="p-8 md:p-12">
-              <span className="text-[#C9A227] text-xs font-semibold tracking-widest uppercase">Franquicias</span>
-              <h2 className="font-display font-black text-3xl md:text-4xl text-white mt-3 mb-4 leading-tight">
+              <span className="text-[#D62B2B] text-xs font-semibold tracking-widest uppercase">Franquicias</span>
+              <h2 className="font-display font-black text-3xl md:text-4xl text-[#1A1A1A] mt-3 mb-4 leading-tight">
                 Abre tu propio<br />punto de venta
               </h2>
-              <p className="text-white/50 text-sm leading-relaxed mb-8">
+              <p className="text-[#1A1A1A]/50 text-sm leading-relaxed mb-8">
                 Únete a la familia. Más de 50 franquiciados exitosos respaldan el modelo.
               </p>
               <div className="space-y-3">
@@ -291,49 +278,48 @@ function Franquicias() {
                   'Marca reconocida con más de 12 años en el mercado',
                 ].map((b, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#7DC242] flex-shrink-0 mt-2" />
-                    <span className="text-white/60 text-sm leading-relaxed">{b}</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#D62B2B] flex-shrink-0 mt-2" />
+                    <span className="text-[#1A1A1A]/60 text-sm leading-relaxed">{b}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right */}
-            <div className="p-8 md:p-12 border-t md:border-t-0 md:border-l border-[#2A2A2A]">
+            <div className="p-8 md:p-12 border-t md:border-t-0 md:border-l border-[#E5E5E5]">
               {sent ? (
                 <div className="h-full flex flex-col items-center justify-center text-center min-h-64">
-                  <div className="w-16 h-16 bg-[#7DC242]/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Check size={28} className="text-[#7DC242]" />
+                  <div className="w-16 h-16 bg-[#D62B2B]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Check size={28} className="text-[#D62B2B]" />
                   </div>
-                  <h3 className="font-display font-bold text-white text-xl mb-2">¡Solicitud enviada!</h3>
-                  <p className="text-white/40 text-sm">Nos pondremos en contacto en menos de 24 horas.</p>
+                  <h3 className="font-display font-bold text-[#1A1A1A] text-xl mb-2">¡Solicitud enviada!</h3>
+                  <p className="text-[#1A1A1A]/40 text-sm">Nos pondremos en contacto en menos de 24 horas.</p>
                 </div>
               ) : (
                 <>
-                  <h3 className="font-display font-bold text-white text-lg mb-6">Quiero ser franquiciado</h3>
+                  <h3 className="font-display font-bold text-[#1A1A1A] text-lg mb-6">Quiero ser franquiciado</h3>
                   <form onSubmit={e => { e.preventDefault(); setSent(true) }} className="space-y-4">
                     <div>
-                      <label className="text-white/40 text-xs mb-1.5 block">Nombre completo</label>
+                      <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Nombre completo</label>
                       <input required value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})}
                         placeholder="Tu nombre"
-                        className="w-full bg-[#252525] border border-[#333] rounded-xl px-4 py-3 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#7DC242]/50 transition-colors" />
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#D62B2B]/40 transition-colors" />
                     </div>
                     <div>
-                      <label className="text-white/40 text-xs mb-1.5 block">Teléfono / WhatsApp</label>
+                      <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Teléfono / WhatsApp</label>
                       <input required value={form.telefono} onChange={e => setForm({...form, telefono: e.target.value})}
                         placeholder="+57 300 000 0000"
-                        className="w-full bg-[#252525] border border-[#333] rounded-xl px-4 py-3 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#7DC242]/50 transition-colors" />
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#D62B2B]/40 transition-colors" />
                     </div>
                     <div>
-                      <label className="text-white/40 text-xs mb-1.5 block">Ciudad de interés</label>
+                      <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Ciudad de interés</label>
                       <input required value={form.ciudad} onChange={e => setForm({...form, ciudad: e.target.value})}
                         placeholder="Bogotá, Medellín..."
-                        className="w-full bg-[#252525] border border-[#333] rounded-xl px-4 py-3 text-white text-sm placeholder-white/20 focus:outline-none focus:border-[#7DC242]/50 transition-colors" />
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#D62B2B]/40 transition-colors" />
                     </div>
                     <div>
-                      <label className="text-white/40 text-xs mb-1.5 block">Capital disponible</label>
+                      <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Capital disponible</label>
                       <select value={form.capital} onChange={e => setForm({...form, capital: e.target.value})}
-                        className="w-full bg-[#252525] border border-[#333] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#7DC242]/50 transition-colors">
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm focus:outline-none focus:border-[#D62B2B]/40 transition-colors">
                         <option>Menos de $10M COP</option>
                         <option>$10M – $20M COP</option>
                         <option>$20M – $30M COP</option>
@@ -341,7 +327,7 @@ function Franquicias() {
                       </select>
                     </div>
                     <button type="submit"
-                      className="w-full bg-white text-[#111] font-bold py-3.5 rounded-xl hover:bg-[#f0f0f0] transition-all hover:scale-[1.02] active:scale-95 text-sm mt-2">
+                      className="w-full bg-[#D62B2B] text-white font-bold py-3.5 rounded-xl hover:bg-[#B82222] transition-all hover:scale-[1.02] active:scale-95 text-sm mt-2">
                       Solicitar información
                     </button>
                   </form>
@@ -359,17 +345,17 @@ function Franquicias() {
 function Footer() {
   const nav = useNavigate()
   return (
-    <footer className="bg-[#0A0A0A] border-t border-[#1E1E1E] py-10 px-5">
+    <footer className="bg-[#F0EBE0] border-t border-[#E5E5E5] py-10 px-5">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <Logo size="sm" />
-          <div className="text-white/25 text-xs mt-2">© 2025 La Arepa · Chorizos &amp; Bebidas</div>
+          <div className="text-[#1A1A1A]/30 text-xs mt-2">© 2025 La Arepa · Chorizos &amp; Bebidas</div>
         </div>
         <div className="flex items-center gap-4">
-          <a href="#menu" className="text-white/40 text-sm hover:text-white transition-colors">Menú</a>
-          <a href="#puntos" className="text-white/40 text-sm hover:text-white transition-colors">Puntos</a>
-          <a href="#franquicias" className="text-white/40 text-sm hover:text-white transition-colors">Franquicias</a>
-          <button onClick={() => nav('/demo')} className="bg-[#7DC242] text-[#111] font-bold px-5 py-2 rounded-full text-sm hover:bg-[#9ED45A] transition-all">
+          <a href="#menu" className="text-[#1A1A1A]/40 text-sm hover:text-[#1A1A1A] transition-colors">Menú</a>
+          <a href="#puntos" className="text-[#1A1A1A]/40 text-sm hover:text-[#1A1A1A] transition-colors">Puntos</a>
+          <a href="#franquicias" className="text-[#1A1A1A]/40 text-sm hover:text-[#1A1A1A] transition-colors">Franquicias</a>
+          <button onClick={() => nav('/demo')} className="bg-[#D62B2B] text-white font-bold px-5 py-2 rounded-full text-sm hover:bg-[#B82222] transition-all">
             Ingresar
           </button>
         </div>
@@ -381,7 +367,7 @@ function Footer() {
 /* ── Main Export ─────────────────────────────────────────────── */
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#111]">
+    <div className="min-h-screen" style={{background:'#FAFAFA'}}>
       <Navbar />
       <Hero />
       <MenuSection />

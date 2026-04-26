@@ -38,12 +38,12 @@ const VEHICLES = [
 ]
 
 const statusConfig = {
-  entregado:  { color: 'text-green-400',  bg: 'bg-green-500/10',  border: 'border-green-500/20', label: 'Entregado',   dot: 'bg-green-400' },
-  en_camino:  { color: 'text-blue-400',   bg: 'bg-blue-500/10',   border: 'border-blue-500/20',  label: 'En camino',  dot: 'bg-blue-400 animate-pulse' },
-  pendiente:  { color: 'text-white/40',   bg: 'bg-white/5',       border: 'border-white/10',     label: 'Pendiente',  dot: 'bg-white/20' },
-  en_ruta:    { color: 'text-blue-400',   bg: 'bg-blue-500/15',   border: 'border-blue-500/30',  label: 'En ruta',    dot: 'bg-blue-400 animate-pulse' },
-  cargando:   { color: 'text-orange-400', bg: 'bg-orange-500/10', border: 'border-orange-500/20',label: 'Cargando',   dot: 'bg-orange-400' },
-  completado: { color: 'text-green-400',  bg: 'bg-green-500/10',  border: 'border-green-500/20', label: 'Completado', dot: 'bg-green-400' },
+  entregado:  { color: 'text-green-600',  bg: 'bg-green-500/8',   border: 'border-green-500/20', label: 'Entregado',   dot: 'bg-green-500' },
+  en_camino:  { color: 'text-blue-600',   bg: 'bg-blue-500/8',    border: 'border-blue-500/20',  label: 'En camino',  dot: 'bg-blue-500 animate-pulse' },
+  pendiente:  { color: 'text-[#1A1A1A]/40', bg: 'bg-[#FAFAFA]',  border: 'border-[#E5E5E5]',    label: 'Pendiente',  dot: 'bg-[#1A1A1A]/20' },
+  en_ruta:    { color: 'text-blue-600',   bg: 'bg-blue-500/10',   border: 'border-blue-500/25',  label: 'En ruta',    dot: 'bg-blue-500 animate-pulse' },
+  cargando:   { color: 'text-orange-600', bg: 'bg-orange-500/8',  border: 'border-orange-500/20',label: 'Cargando',   dot: 'bg-orange-500' },
+  completado: { color: 'text-green-600',  bg: 'bg-green-500/8',   border: 'border-green-500/20', label: 'Completado', dot: 'bg-green-500' },
 }
 
 export default function RoutesDemo() {
@@ -52,22 +52,21 @@ export default function RoutesDemo() {
   return (
     <div className="p-5 md:p-8 space-y-5">
       <div>
-        <h1 className="font-display font-black text-2xl text-white">Gestión de Rutas</h1>
-        <p className="text-white/40 text-sm">Seguimiento de vehículos y entregas en tiempo real</p>
+        <h1 className="font-display font-black text-2xl text-[#1A1A1A]">Gestión de Rutas</h1>
+        <p className="text-[#1A1A1A]/40 text-sm">Seguimiento de vehículos y entregas en tiempo real</p>
       </div>
 
-      {/* Vehicle cards */}
       <div className="grid sm:grid-cols-3 gap-4">
         {VEHICLES.map(v => {
           const s = statusConfig[v.status]
           return (
-            <button key={v.id} onClick={() => setSel(v)} className={`glass rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 ${sel.id===v.id ? 'border-brand-yellow/40 bg-brand-yellow/5' : ''}`}>
+            <button key={v.id} onClick={() => setSel(v)} className={`bg-white border rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 shadow-sm ${sel.id===v.id ? 'border-[#D62B2B]/30 bg-[#D62B2B]/4' : 'border-[#E5E5E5]'}`}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center"><Truck size={16} className="text-white/70"/></div>
+                  <div className="w-8 h-8 bg-[#1A1A1A]/6 rounded-lg flex items-center justify-center"><Truck size={16} className="text-[#1A1A1A]/60"/></div>
                   <div>
-                    <div className="text-white text-sm font-bold">{v.id}</div>
-                    <div className="text-white/40 text-xs">{v.plate}</div>
+                    <div className="text-[#1A1A1A] text-sm font-bold">{v.id}</div>
+                    <div className="text-[#1A1A1A]/40 text-xs">{v.plate}</div>
                   </div>
                 </div>
                 <div className={`flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-full border ${s.bg} ${s.color} ${s.border}`}>
@@ -75,12 +74,12 @@ export default function RoutesDemo() {
                   {s.label}
                 </div>
               </div>
-              <div className="text-white text-sm font-medium mb-0.5">{v.driver}</div>
-              <div className="text-white/40 text-xs mb-3">{v.route}</div>
-              <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
-                <div className="h-full bg-brand-yellow rounded-full transition-all" style={{width:`${v.progress}%`}}/>
+              <div className="text-[#1A1A1A] text-sm font-medium mb-0.5">{v.driver}</div>
+              <div className="text-[#1A1A1A]/40 text-xs mb-3">{v.route}</div>
+              <div className="w-full bg-[#E5E5E5] rounded-full h-1.5 overflow-hidden">
+                <div className="h-full bg-[#D62B2B] rounded-full transition-all" style={{width:`${v.progress}%`}}/>
               </div>
-              <div className="flex justify-between text-xs text-white/40 mt-1">
+              <div className="flex justify-between text-xs text-[#1A1A1A]/40 mt-1">
                 <span>{v.stops.filter(s=>s.status==='entregado').length}/{v.stops.length} entregas</span>
                 <span>{v.progress}%</span>
               </div>
@@ -89,17 +88,15 @@ export default function RoutesDemo() {
         })}
       </div>
 
-      {/* Detail */}
       <div className="grid lg:grid-cols-5 gap-5">
-        {/* Stops list */}
-        <div className="lg:col-span-2 glass rounded-2xl p-5">
+        <div className="lg:col-span-2 bg-white border border-[#E5E5E5] rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-brand-yellow/15 rounded-xl flex items-center justify-center">
-              <Navigation size={18} className="text-brand-yellow"/>
+            <div className="w-10 h-10 bg-[#D62B2B]/10 rounded-xl flex items-center justify-center">
+              <Navigation size={18} className="text-[#D62B2B]"/>
             </div>
             <div>
-              <div className="text-white font-display font-bold">{sel.driver}</div>
-              <div className="text-white/40 text-xs">{sel.route} · {sel.plate}</div>
+              <div className="text-[#1A1A1A] font-display font-bold">{sel.driver}</div>
+              <div className="text-[#1A1A1A]/40 text-xs">{sel.route} · {sel.plate}</div>
             </div>
           </div>
           <div className="space-y-2">
@@ -108,14 +105,14 @@ export default function RoutesDemo() {
               return (
                 <div key={i} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${sc.bg} ${sc.border}`}>
                   <div className="flex flex-col items-center">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${stop.status==='entregado'?'bg-green-500 text-white':stop.status==='en_camino'?'bg-blue-500 text-white':'bg-white/10 text-white/40'}`}>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${stop.status==='entregado'?'bg-green-500 text-white':stop.status==='en_camino'?'bg-blue-500 text-white':'bg-[#1A1A1A]/8 text-[#1A1A1A]/40'}`}>
                       {stop.status==='entregado'?'✓':i+1}
                     </div>
-                    {i<sel.stops.length-1 && <div className="w-px h-4 bg-white/10 mt-1"/>}
+                    {i<sel.stops.length-1 && <div className="w-px h-4 bg-[#E5E5E5] mt-1"/>}
                   </div>
                   <div className="flex-1">
                     <div className={`text-sm font-medium ${sc.color}`}>{stop.name}</div>
-                    <div className="text-white/30 text-xs">{stop.hora} · {stop.productos} productos</div>
+                    <div className="text-[#1A1A1A]/30 text-xs">{stop.hora} · {stop.productos} productos</div>
                   </div>
                   <div className={`w-2 h-2 rounded-full flex-shrink-0 ${sc.dot}`}/>
                 </div>
@@ -124,61 +121,58 @@ export default function RoutesDemo() {
           </div>
         </div>
 
-        {/* Map placeholder + stats */}
         <div className="lg:col-span-3 space-y-4">
-          <div className="glass rounded-2xl overflow-hidden relative" style={{height:'280px'}}>
-            <div className="absolute inset-0 bg-[#0D2A0D] opacity-80"/>
-            <div className="absolute inset-0 opacity-15" style={{backgroundImage:'linear-gradient(#1a4a1a 1px,transparent 1px),linear-gradient(90deg,#1a4a1a 1px,transparent 1px)',backgroundSize:'32px 32px'}}/>
-            <div className="absolute top-3 left-3 bg-black/60 rounded-lg px-3 py-1.5 text-xs text-white/60 z-10 flex items-center gap-1.5">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"/>
+          <div className="bg-white border border-[#E5E5E5] rounded-2xl overflow-hidden relative shadow-sm" style={{height:'280px'}}>
+            <div className="absolute inset-0 bg-[#E8F5E8] opacity-60"/>
+            <div className="absolute inset-0 opacity-20" style={{backgroundImage:'linear-gradient(#4ade80 1px,transparent 1px),linear-gradient(90deg,#4ade80 1px,transparent 1px)',backgroundSize:'32px 32px'}}/>
+            <div className="absolute top-3 left-3 bg-white/80 border border-[#E5E5E5] rounded-lg px-3 py-1.5 text-xs text-[#1A1A1A]/60 z-10 flex items-center gap-1.5 shadow-sm">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"/>
               GPS en tiempo real — {sel.driver}
             </div>
-            {/* Simulated stops on map */}
             {sel.stops.map((stop, i) => {
               const positions = [{x:45,y:30},{x:40,y:25},{x:50,y:45},{x:35,y:55},{x:55,y:60},{x:48,y:70}]
               const pos = positions[i] || {x:50,y:50}
               return (
                 <div key={i} className="absolute" style={{left:`${pos.x}%`,top:`${pos.y}%`,transform:'translate(-50%,-50%)'}}>
-                  <div className={`w-3 h-3 rounded-full border-2 ${stop.status==='entregado'?'bg-green-400 border-green-200':stop.status==='en_camino'?'bg-blue-400 border-blue-200 animate-pulse':'bg-white/30 border-white/50'}`}/>
+                  <div className={`w-3 h-3 rounded-full border-2 ${stop.status==='entregado'?'bg-green-500 border-green-200':stop.status==='en_camino'?'bg-blue-500 border-blue-200 animate-pulse':'bg-[#1A1A1A]/20 border-[#1A1A1A]/30'}`}/>
                 </div>
               )
             })}
-            {/* Truck icon */}
             <div className="absolute" style={{left:'50%',top:'45%',transform:'translate(-50%,-50%)'}}>
-              <div className="bg-brand-yellow rounded-full p-2 shadow-lg animate-pulse">
-                <Truck size={14} className="text-brand-dark"/>
+              <div className="bg-[#D62B2B] rounded-full p-2 shadow-lg animate-pulse">
+                <Truck size={14} className="text-white"/>
               </div>
             </div>
             <div className="absolute bottom-3 right-3 flex flex-col gap-1">
-              <div className="flex items-center gap-1.5 text-xs"><div className="w-2 h-2 rounded-full bg-green-400"/><span className="text-white/60">Entregado</span></div>
-              <div className="flex items-center gap-1.5 text-xs"><div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"/><span className="text-white/60">En camino</span></div>
-              <div className="flex items-center gap-1.5 text-xs"><div className="w-2 h-2 rounded-full bg-white/30"/><span className="text-white/60">Pendiente</span></div>
+              <div className="flex items-center gap-1.5 text-xs"><div className="w-2 h-2 rounded-full bg-green-500"/><span className="text-[#1A1A1A]/60">Entregado</span></div>
+              <div className="flex items-center gap-1.5 text-xs"><div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"/><span className="text-[#1A1A1A]/60">En camino</span></div>
+              <div className="flex items-center gap-1.5 text-xs"><div className="w-2 h-2 rounded-full bg-[#1A1A1A]/20"/><span className="text-[#1A1A1A]/60">Pendiente</span></div>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: 'Entregados', value: sel.stops.filter(s=>s.status==='entregado').length, icon: CheckCircle, color: 'text-green-400' },
-              { label: 'En camino', value: sel.stops.filter(s=>s.status==='en_camino').length, icon: Clock, color: 'text-blue-400' },
-              { label: 'Pendientes', value: sel.stops.filter(s=>s.status==='pendiente').length, icon: Package, color: 'text-white/40' },
+              { label: 'Entregados', value: sel.stops.filter(s=>s.status==='entregado').length, icon: CheckCircle, color: 'text-green-600' },
+              { label: 'En camino', value: sel.stops.filter(s=>s.status==='en_camino').length, icon: Clock, color: 'text-blue-600' },
+              { label: 'Pendientes', value: sel.stops.filter(s=>s.status==='pendiente').length, icon: Package, color: 'text-[#1A1A1A]/40' },
             ].map((stat, i) => (
-              <div key={i} className="glass rounded-xl p-4 text-center">
+              <div key={i} className="bg-white border border-[#E5E5E5] rounded-xl p-4 text-center shadow-sm">
                 <stat.icon size={20} className={`${stat.color} mx-auto mb-2`}/>
                 <div className={`font-display font-black text-2xl ${stat.color}`}>{stat.value}</div>
-                <div className="text-white/40 text-xs mt-0.5">{stat.label}</div>
+                <div className="text-[#1A1A1A]/40 text-xs mt-0.5">{stat.label}</div>
               </div>
             ))}
           </div>
 
-          <div className="glass rounded-2xl p-4">
-            <h3 className="font-display font-bold text-white text-sm mb-3">Devoluciones del día</h3>
+          <div className="bg-white border border-[#E5E5E5] rounded-2xl p-4 shadow-sm">
+            <h3 className="font-display font-bold text-[#1A1A1A] text-sm mb-3">Devoluciones del día</h3>
             <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-500/5 border border-orange-500/15">
-              <AlertCircle size={16} className="text-orange-400 flex-shrink-0"/>
+              <AlertCircle size={16} className="text-orange-500 flex-shrink-0"/>
               <div className="flex-1">
-                <div className="text-white text-xs font-medium">V01 — Chorizo deteriorado</div>
-                <div className="text-white/40 text-xs">Rafael Uribe rechazó 8 und · Motivo: mal estado</div>
+                <div className="text-[#1A1A1A] text-xs font-medium">V01 — Chorizo deteriorado</div>
+                <div className="text-[#1A1A1A]/40 text-xs">Rafael Uribe rechazó 8 und · Motivo: mal estado</div>
               </div>
-              <button className="text-xs bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-lg">Aceptar</button>
+              <button className="text-xs bg-orange-500/15 text-orange-600 border border-orange-500/25 px-3 py-1 rounded-lg">Aceptar</button>
             </div>
           </div>
         </div>

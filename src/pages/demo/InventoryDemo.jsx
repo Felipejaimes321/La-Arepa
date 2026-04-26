@@ -30,9 +30,9 @@ const PUNTOS_DATA = [
 ]
 
 function sc(val) {
-  if (val < 5)  return 'text-red-400'
-  if (val < 20) return 'text-orange-400'
-  return 'text-[#7DC242]'
+  if (val < 5)  return 'text-red-500'
+  if (val < 20) return 'text-orange-500'
+  return 'text-[#D62B2B]'
 }
 
 function StockRow({ stock }) {
@@ -43,8 +43,8 @@ function StockRow({ stock }) {
         return (
           <div key={p.id} className="flex flex-col gap-1">
             <div className={`font-display font-black text-2xl leading-none ${sc(qty)}`}>{qty}</div>
-            <div className="text-white/40 text-xs">{p.nombre}</div>
-            <div className="text-white/20 text-xs">{p.unidad}</div>
+            <div className="text-[#1A1A1A]/40 text-xs">{p.nombre}</div>
+            <div className="text-[#1A1A1A]/25 text-xs">{p.unidad}</div>
           </div>
         )
       })}
@@ -125,7 +125,7 @@ export default function InventoryDemo() {
   }
 
   const TABS = [
-    { id: 'bodega',    label: 'Bodega',          icon: Warehouse, color: '#7DC242' },
+    { id: 'bodega',    label: 'Bodega',          icon: Warehouse, color: '#D62B2B' },
     { id: 'vehiculos', label: 'Vehículos',        icon: Truck,     color: '#C9A227' },
     { id: 'puntos',    label: 'Puntos de Venta',  icon: MapPin,    color: '#60a5fa' },
   ]
@@ -134,25 +134,25 @@ export default function InventoryDemo() {
     <div className="p-5 md:p-10 space-y-10 max-w-5xl">
 
       <div>
-        <h1 className="font-display font-black text-2xl text-white tracking-tight">Inventario</h1>
-        <div className="flex items-center gap-2 mt-1 text-white/25 text-xs">
-          <span className="text-[#7DC242]/70">Bodega</span>
+        <h1 className="font-display font-black text-2xl text-[#1A1A1A] tracking-tight">Inventario</h1>
+        <div className="flex items-center gap-2 mt-1 text-[#1A1A1A]/30 text-xs">
+          <span className="text-[#D62B2B]/70">Bodega</span>
           <ArrowRight size={10}/>
           <span className="text-[#C9A227]/70">Vehículo</span>
           <ArrowRight size={10}/>
-          <span className="text-blue-400/70">Punto de Venta</span>
+          <span className="text-blue-500/70">Punto de Venta</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-1 border-b border-white/8">
+      <div className="flex items-center gap-1 border-b border-[#E5E5E5]">
         {TABS.map(({ id, label, icon: Icon, color }) => (
           <button
             key={id}
             onClick={() => setVista(id)}
             className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-all -mb-px ${
               vista === id
-                ? 'border-b-2 text-white'
-                : 'text-white/30 hover:text-white/60 border-b-2 border-transparent'
+                ? 'border-b-2 text-[#1A1A1A]'
+                : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60 border-b-2 border-transparent'
             }`}
             style={vista === id ? { borderBottomColor: color, color } : {}}
           >
@@ -168,37 +168,37 @@ export default function InventoryDemo() {
           <div>
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="font-display font-bold text-white">Stock en Bodega</h2>
-                <p className="text-white/25 text-xs mt-0.5">Cantidades disponibles ahora mismo</p>
+                <h2 className="font-display font-bold text-[#1A1A1A]">Stock en Bodega</h2>
+                <p className="text-[#1A1A1A]/30 text-xs mt-0.5">Cantidades disponibles ahora mismo</p>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 bg-[#7DC242] rounded-full"/>
-                <span className="text-white/30 text-xs">Bodega Central</span>
+                <div className="w-1.5 h-1.5 bg-[#D62B2B] rounded-full"/>
+                <span className="text-[#1A1A1A]/30 text-xs">Bodega Central</span>
               </div>
             </div>
             <StockRow stock={stockBodega}/>
           </div>
 
-          <div className="border-t border-white/6"/>
+          <div className="border-t border-[#E5E5E5]"/>
 
           <div>
-            <h3 className="font-display font-bold text-white">Registrar Ingreso</h3>
-            <p className="text-white/25 text-xs mt-0.5 mb-6">Productos que llegan a la bodega</p>
+            <h3 className="font-display font-bold text-[#1A1A1A]">Registrar Ingreso</h3>
+            <p className="text-[#1A1A1A]/30 text-xs mt-0.5 mb-6">Productos que llegan a la bodega</p>
 
             {cargaConfirmada ? (
               <div className="space-y-1 mb-6">
-                <p className="text-[#7DC242] text-sm font-medium mb-3">Ingreso confirmado — stock actualizado</p>
+                <p className="text-[#D62B2B] text-sm font-medium mb-3">Ingreso confirmado — stock actualizado</p>
                 {Object.entries(cargaConfirmada).map(([id, qty]) => {
                   const p = PRODUCTOS.find(p => p.id === parseInt(id))
                   return p ? (
-                    <div key={id} className="flex items-baseline gap-3 text-sm py-1 border-b border-white/5">
-                      <span className="text-white/50 w-24">{p.nombre}</span>
-                      <span className="text-[#7DC242]">+{qty} {p.unidad}</span>
-                      <span className="text-white/20 text-xs">total {stockBodega[parseInt(id)]}</span>
+                    <div key={id} className="flex items-baseline gap-3 text-sm py-1 border-b border-[#E5E5E5]">
+                      <span className="text-[#1A1A1A]/50 w-24">{p.nombre}</span>
+                      <span className="text-[#D62B2B]">+{qty} {p.unidad}</span>
+                      <span className="text-[#1A1A1A]/25 text-xs">total {stockBodega[parseInt(id)]}</span>
                     </div>
                   ) : null
                 })}
-                <button onClick={() => { setCargaForm({}); setCargaConfirmada(null) }} className="mt-4 flex items-center gap-1.5 text-white/40 hover:text-white/70 text-sm transition-colors">
+                <button onClick={() => { setCargaForm({}); setCargaConfirmada(null) }} className="mt-4 flex items-center gap-1.5 text-[#1A1A1A]/40 hover:text-[#1A1A1A]/70 text-sm transition-colors">
                   <RefreshCw size={12}/> Nuevo ingreso
                 </button>
               </div>
@@ -207,21 +207,21 @@ export default function InventoryDemo() {
                 <div className="lg:col-span-2">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-white/8">
-                        <th className="text-left text-white/25 text-xs font-medium pb-2 pr-4">Producto</th>
-                        <th className="text-right text-white/25 text-xs font-medium pb-2 pr-4">En bodega</th>
-                        <th className="text-right text-white/25 text-xs font-medium pb-2">Cantidad a ingresar</th>
+                      <tr className="border-b border-[#E5E5E5]">
+                        <th className="text-left text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">Producto</th>
+                        <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">En bodega</th>
+                        <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2">Cantidad a ingresar</th>
                       </tr>
                     </thead>
                     <tbody>
                       {PRODUCTOS.map(p => (
-                        <tr key={p.id} className="border-b border-white/5">
+                        <tr key={p.id} className="border-b border-[#E5E5E5]">
                           <td className="py-3 pr-4">
-                            <span className="text-white/70 text-sm">{p.nombre}</span>
+                            <span className="text-[#1A1A1A]/70 text-sm">{p.nombre}</span>
                           </td>
                           <td className="py-3 pr-4 text-right">
                             <span className={`text-sm font-semibold ${sc(stockBodega[p.id]||0)}`}>{stockBodega[p.id]||0}</span>
-                            <span className="text-white/20 text-xs ml-1">{p.unidad}</span>
+                            <span className="text-[#1A1A1A]/25 text-xs ml-1">{p.unidad}</span>
                           </td>
                           <td className="py-3 text-right">
                             <input
@@ -229,7 +229,7 @@ export default function InventoryDemo() {
                               value={cargaForm[p.id]||''}
                               onChange={e => setCargaForm(f=>({...f,[p.id]:Math.max(0,parseInt(e.target.value)||0)}))}
                               placeholder="0"
-                              className="w-20 bg-transparent border-b border-white/15 text-white text-sm text-right py-1 px-1 focus:outline-none focus:border-[#7DC242]/50 transition-colors"
+                              className="w-20 bg-transparent border-b border-[#E5E5E5] text-[#1A1A1A] text-sm text-right py-1 px-1 focus:outline-none focus:border-[#D62B2B]/50 transition-colors"
                             />
                           </td>
                         </tr>
@@ -239,15 +239,15 @@ export default function InventoryDemo() {
                 </div>
                 <div className="space-y-5">
                   <div>
-                    <div className="text-white/30 text-xs uppercase tracking-wider mb-3">Resumen</div>
+                    <div className="text-[#1A1A1A]/30 text-xs uppercase tracking-wider mb-3">Resumen</div>
                     {Object.entries(cargaForm).filter(([,q])=>q>0).length === 0
-                      ? <p className="text-white/15 text-sm">Sin productos aún</p>
+                      ? <p className="text-[#1A1A1A]/20 text-sm">Sin productos aún</p>
                       : Object.entries(cargaForm).filter(([,q])=>q>0).map(([id,qty]) => {
                           const p = PRODUCTOS.find(p=>p.id===parseInt(id))
                           return p ? (
                             <div key={id} className="flex items-baseline gap-2 text-sm mb-2">
-                              <span className="text-white/40 flex-1">{p.nombre}</span>
-                              <span className="text-[#7DC242]">+{qty}</span>
+                              <span className="text-[#1A1A1A]/40 flex-1">{p.nombre}</span>
+                              <span className="text-[#D62B2B]">+{qty}</span>
                             </div>
                           ) : null
                         })
@@ -258,11 +258,11 @@ export default function InventoryDemo() {
                       onClick={confirmarCarga}
                       disabled={!Object.values(cargaForm).some(q=>q>0)}
                       className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
-                      style={{ background: '#7DC242', color: '#111' }}
+                      style={{ background: '#D62B2B', color: '#fff' }}
                     >
                       <Package size={14}/> Confirmar Ingreso
                     </button>
-                    <button onClick={() => setCargaForm({})} className="w-full py-2 text-sm text-white/25 hover:text-white/50 transition-colors flex items-center justify-center gap-1.5">
+                    <button onClick={() => setCargaForm({})} className="w-full py-2 text-sm text-[#1A1A1A]/25 hover:text-[#1A1A1A]/50 transition-colors flex items-center justify-center gap-1.5">
                       <RotateCcw size={12}/> Limpiar
                     </button>
                   </div>
@@ -271,11 +271,11 @@ export default function InventoryDemo() {
             )}
           </div>
 
-          <div className="border-t border-white/6"/>
+          <div className="border-t border-[#E5E5E5]"/>
 
           <div>
-            <h3 className="font-display font-bold text-white">Despachar a Vehículo</h3>
-            <p className="text-white/25 text-xs mt-0.5 mb-6">Descarga productos de la bodega hacia un carro</p>
+            <h3 className="font-display font-bold text-[#1A1A1A]">Despachar a Vehículo</h3>
+            <p className="text-[#1A1A1A]/30 text-xs mt-0.5 mb-6">Descarga productos de la bodega hacia un carro</p>
 
             {despachoOK ? (
               <div className="space-y-1 mb-6">
@@ -283,13 +283,13 @@ export default function InventoryDemo() {
                 {Object.entries(despachoOK.cambios).map(([id, qty]) => {
                   const p = PRODUCTOS.find(p=>p.id===parseInt(id))
                   return p ? (
-                    <div key={id} className="flex items-baseline gap-3 text-sm py-1 border-b border-white/5">
-                      <span className="text-white/50 w-24">{p.nombre}</span>
+                    <div key={id} className="flex items-baseline gap-3 text-sm py-1 border-b border-[#E5E5E5]">
+                      <span className="text-[#1A1A1A]/50 w-24">{p.nombre}</span>
                       <span className="text-[#C9A227]">{qty} {p.unidad}</span>
                     </div>
                   ) : null
                 })}
-                <button onClick={() => { setDespachoForm({}); setDespachoOK(null) }} className="mt-4 flex items-center gap-1.5 text-white/40 hover:text-white/70 text-sm transition-colors">
+                <button onClick={() => { setDespachoForm({}); setDespachoOK(null) }} className="mt-4 flex items-center gap-1.5 text-[#1A1A1A]/40 hover:text-[#1A1A1A]/70 text-sm transition-colors">
                   <RefreshCw size={12}/> Nuevo despacho
                 </button>
               </div>
@@ -297,21 +297,21 @@ export default function InventoryDemo() {
               <div className="grid lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-white/30 text-sm">Asignar a</span>
+                    <span className="text-[#1A1A1A]/30 text-sm">Asignar a</span>
                     <select
                       value={despachoVeh}
                       onChange={e=>setDespachoVeh(e.target.value)}
-                      className="bg-transparent border-b border-white/15 text-white text-sm py-1 px-1 focus:outline-none focus:border-[#C9A227]/50 transition-colors flex-1"
+                      className="bg-transparent border-b border-[#E5E5E5] text-[#1A1A1A] text-sm py-1 px-1 focus:outline-none focus:border-[#C9A227]/50 transition-colors flex-1"
                     >
-                      {VEHICLES_DATA.map(v => <option key={v.id} value={v.id} className="bg-[#111]">{v.id} — {v.driver} ({v.route})</option>)}
+                      {VEHICLES_DATA.map(v => <option key={v.id} value={v.id}>{v.id} — {v.driver} ({v.route})</option>)}
                     </select>
                   </div>
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-white/8">
-                        <th className="text-left text-white/25 text-xs font-medium pb-2 pr-4">Producto</th>
-                        <th className="text-right text-white/25 text-xs font-medium pb-2 pr-4">Disponible</th>
-                        <th className="text-right text-white/25 text-xs font-medium pb-2">A despachar</th>
+                      <tr className="border-b border-[#E5E5E5]">
+                        <th className="text-left text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">Producto</th>
+                        <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">Disponible</th>
+                        <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2">A despachar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -320,13 +320,13 @@ export default function InventoryDemo() {
                         const pedido = despachoForm[p.id] || 0
                         const excede = pedido > disponible
                         return (
-                          <tr key={p.id} className="border-b border-white/5">
+                          <tr key={p.id} className="border-b border-[#E5E5E5]">
                             <td className="py-3 pr-4">
-                              <span className="text-white/70 text-sm">{p.nombre}</span>
+                              <span className="text-[#1A1A1A]/70 text-sm">{p.nombre}</span>
                             </td>
                             <td className="py-3 pr-4 text-right">
                               <span className={`text-sm font-semibold ${sc(disponible)}`}>{disponible}</span>
-                              <span className="text-white/20 text-xs ml-1">{p.unidad}</span>
+                              <span className="text-[#1A1A1A]/25 text-xs ml-1">{p.unidad}</span>
                             </td>
                             <td className="py-3 text-right">
                               <input
@@ -334,7 +334,7 @@ export default function InventoryDemo() {
                                 value={despachoForm[p.id]||''}
                                 onChange={e=>setDespachoForm(f=>({...f,[p.id]:Math.max(0,parseInt(e.target.value)||0)}))}
                                 placeholder="0"
-                                className={`w-20 bg-transparent border-b text-sm text-right py-1 px-1 focus:outline-none transition-colors ${excede ? 'border-red-500/50 text-red-400' : 'border-white/15 text-white focus:border-[#C9A227]/50'}`}
+                                className={`w-20 bg-transparent border-b text-sm text-right py-1 px-1 focus:outline-none transition-colors ${excede ? 'border-red-400/50 text-red-500' : 'border-[#E5E5E5] text-[#1A1A1A] focus:border-[#C9A227]/50'}`}
                               />
                             </td>
                           </tr>
@@ -345,17 +345,17 @@ export default function InventoryDemo() {
                 </div>
                 <div className="space-y-5">
                   <div>
-                    <div className="text-white/30 text-xs uppercase tracking-wider mb-1">Despacho</div>
-                    <div className="text-white/20 text-xs mb-3">{VEHICLES_DATA.find(v=>v.id===despachoVeh)?.driver}</div>
+                    <div className="text-[#1A1A1A]/30 text-xs uppercase tracking-wider mb-1">Despacho</div>
+                    <div className="text-[#1A1A1A]/25 text-xs mb-3">{VEHICLES_DATA.find(v=>v.id===despachoVeh)?.driver}</div>
                     {Object.entries(despachoForm).filter(([,q])=>q>0).length === 0
-                      ? <p className="text-white/15 text-sm">Sin productos aún</p>
+                      ? <p className="text-[#1A1A1A]/20 text-sm">Sin productos aún</p>
                       : Object.entries(despachoForm).filter(([,q])=>q>0).map(([id,qty]) => {
                           const p = PRODUCTOS.find(p=>p.id===parseInt(id))
                           const excede = qty > (stockBodega[parseInt(id)]||0)
                           return p ? (
                             <div key={id} className="flex items-baseline gap-2 text-sm mb-2">
-                              <span className="text-white/40 flex-1">{p.nombre}</span>
-                              <span className={`font-semibold ${excede ? 'text-red-400' : 'text-[#C9A227]'}`}>{qty}</span>
+                              <span className="text-[#1A1A1A]/40 flex-1">{p.nombre}</span>
+                              <span className={`font-semibold ${excede ? 'text-red-500' : 'text-[#C9A227]'}`}>{qty}</span>
                             </div>
                           ) : null
                         })
@@ -365,7 +365,7 @@ export default function InventoryDemo() {
                     onClick={confirmarDespacho}
                     disabled={!Object.values(despachoForm).some(q=>q>0) || Object.entries(despachoForm).some(([id,q])=>q>(stockBodega[parseInt(id)]||0))}
                     className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
-                    style={{ background: '#C9A227', color: '#111' }}
+                    style={{ background: '#C9A227', color: '#fff' }}
                   >
                     <Truck size={14}/> Confirmar Despacho
                   </button>
@@ -380,8 +380,8 @@ export default function InventoryDemo() {
         <div className="space-y-12">
 
           <div>
-            <h2 className="font-display font-bold text-white mb-1">Stock en Vehículos</h2>
-            <p className="text-white/25 text-xs mb-6">Inventario cargado en cada carro ahora mismo</p>
+            <h2 className="font-display font-bold text-[#1A1A1A] mb-1">Stock en Vehículos</h2>
+            <p className="text-[#1A1A1A]/30 text-xs mb-6">Inventario cargado en cada carro ahora mismo</p>
             <div className="space-y-px">
               {VEHICLES_DATA.map(v => {
                 const isOpen = vehOpen === v.id
@@ -391,19 +391,19 @@ export default function InventoryDemo() {
                   <div key={v.id}>
                     <button
                       onClick={() => setVehOpen(isOpen ? null : v.id)}
-                      className="w-full flex items-center gap-4 py-4 border-b border-white/6 hover:bg-white/2 transition-colors text-left px-1"
+                      className="w-full flex items-center gap-4 py-4 border-b border-[#E5E5E5] hover:bg-[#1A1A1A]/2 transition-colors text-left px-1"
                     >
                       <Truck size={14} className="text-[#C9A227]/60 flex-shrink-0"/>
                       <div className="flex-1">
-                        <span className="text-white/80 text-sm font-medium">{v.id}</span>
-                        <span className="text-white/30 text-sm ml-2">{v.driver}</span>
-                        <span className="text-white/20 text-xs ml-2">{v.route}</span>
+                        <span className="text-[#1A1A1A]/80 text-sm font-medium">{v.id}</span>
+                        <span className="text-[#1A1A1A]/35 text-sm ml-2">{v.driver}</span>
+                        <span className="text-[#1A1A1A]/25 text-xs ml-2">{v.route}</span>
                       </div>
-                      <span className={`text-sm font-semibold ${total > 0 ? 'text-[#C9A227]' : 'text-white/20'}`}>{total}</span>
-                      {isOpen ? <ChevronUp size={14} className="text-white/25"/> : <ChevronDown size={14} className="text-white/25"/>}
+                      <span className={`text-sm font-semibold ${total > 0 ? 'text-[#C9A227]' : 'text-[#1A1A1A]/25'}`}>{total}</span>
+                      {isOpen ? <ChevronUp size={14} className="text-[#1A1A1A]/25"/> : <ChevronDown size={14} className="text-[#1A1A1A]/25"/>}
                     </button>
                     {isOpen && (
-                      <div className="py-5 px-1 border-b border-white/6">
+                      <div className="py-5 px-1 border-b border-[#E5E5E5]">
                         <StockRow stock={vStock}/>
                       </div>
                     )}
@@ -413,25 +413,25 @@ export default function InventoryDemo() {
             </div>
           </div>
 
-          <div className="border-t border-white/6"/>
+          <div className="border-t border-[#E5E5E5]"/>
 
           <div>
-            <h3 className="font-display font-bold text-white">Entregar a Punto de Venta</h3>
-            <p className="text-white/25 text-xs mt-0.5 mb-6">Transfiere el inventario del carro al punto</p>
+            <h3 className="font-display font-bold text-[#1A1A1A]">Entregar a Punto de Venta</h3>
+            <p className="text-[#1A1A1A]/30 text-xs mt-0.5 mb-6">Transfiere el inventario del carro al punto</p>
 
             {entregaOK ? (
               <div className="space-y-1 mb-6">
-                <p className="text-blue-400 text-sm font-medium mb-3">Entrega confirmada — {entregaOK.veh} a {entregaOK.punto}</p>
+                <p className="text-blue-500 text-sm font-medium mb-3">Entrega confirmada — {entregaOK.veh} a {entregaOK.punto}</p>
                 {Object.entries(entregaOK.cambios).map(([id,qty]) => {
                   const p = PRODUCTOS.find(p=>p.id===parseInt(id))
                   return p ? (
-                    <div key={id} className="flex items-baseline gap-3 text-sm py-1 border-b border-white/5">
-                      <span className="text-white/50 w-24">{p.nombre}</span>
-                      <span className="text-blue-400">+{qty} {p.unidad}</span>
+                    <div key={id} className="flex items-baseline gap-3 text-sm py-1 border-b border-[#E5E5E5]">
+                      <span className="text-[#1A1A1A]/50 w-24">{p.nombre}</span>
+                      <span className="text-blue-500">+{qty} {p.unidad}</span>
                     </div>
                   ) : null
                 })}
-                <button onClick={() => { setEntregaForm({}); setEntregaOK(null) }} className="mt-4 flex items-center gap-1.5 text-white/40 hover:text-white/70 text-sm transition-colors">
+                <button onClick={() => { setEntregaForm({}); setEntregaOK(null) }} className="mt-4 flex items-center gap-1.5 text-[#1A1A1A]/40 hover:text-[#1A1A1A]/70 text-sm transition-colors">
                   <RefreshCw size={12}/> Nueva entrega
                 </button>
               </div>
@@ -440,32 +440,32 @@ export default function InventoryDemo() {
                 <div className="lg:col-span-2 space-y-4">
                   <div className="flex items-center gap-6 flex-wrap">
                     <div className="flex items-center gap-3">
-                      <span className="text-white/30 text-sm">Vehículo</span>
+                      <span className="text-[#1A1A1A]/30 text-sm">Vehículo</span>
                       <select
                         value={entregaVeh}
                         onChange={e=>{setEntregaVeh(e.target.value);setEntregaForm({})}}
-                        className="bg-transparent border-b border-white/15 text-white text-sm py-1 px-1 focus:outline-none focus:border-[#C9A227]/50 transition-colors"
+                        className="bg-transparent border-b border-[#E5E5E5] text-[#1A1A1A] text-sm py-1 px-1 focus:outline-none focus:border-[#C9A227]/50 transition-colors"
                       >
-                        {VEHICLES_DATA.map(v => <option key={v.id} value={v.id} className="bg-[#111]">{v.id} — {v.driver}</option>)}
+                        {VEHICLES_DATA.map(v => <option key={v.id} value={v.id}>{v.id} — {v.driver}</option>)}
                       </select>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-white/30 text-sm">Punto</span>
+                      <span className="text-[#1A1A1A]/30 text-sm">Punto</span>
                       <select
                         value={entregaPunto}
                         onChange={e=>setEntregaPunto(parseInt(e.target.value))}
-                        className="bg-transparent border-b border-white/15 text-white text-sm py-1 px-1 focus:outline-none focus:border-blue-400/50 transition-colors"
+                        className="bg-transparent border-b border-[#E5E5E5] text-[#1A1A1A] text-sm py-1 px-1 focus:outline-none focus:border-blue-400/50 transition-colors"
                       >
-                        {PUNTOS_DATA.map(p => <option key={p.id} value={p.id} className="bg-[#111]">{p.nombre}</option>)}
+                        {PUNTOS_DATA.map(p => <option key={p.id} value={p.id}>{p.nombre}</option>)}
                       </select>
                     </div>
                   </div>
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-white/8">
-                        <th className="text-left text-white/25 text-xs font-medium pb-2 pr-4">Producto</th>
-                        <th className="text-right text-white/25 text-xs font-medium pb-2 pr-4">En vehículo</th>
-                        <th className="text-right text-white/25 text-xs font-medium pb-2">A entregar</th>
+                      <tr className="border-b border-[#E5E5E5]">
+                        <th className="text-left text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">Producto</th>
+                        <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">En vehículo</th>
+                        <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2">A entregar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -474,13 +474,13 @@ export default function InventoryDemo() {
                         const pedido = entregaForm[p.id] || 0
                         const excede = pedido > disponible
                         return (
-                          <tr key={p.id} className="border-b border-white/5">
+                          <tr key={p.id} className="border-b border-[#E5E5E5]">
                             <td className="py-3 pr-4">
-                              <span className="text-white/70 text-sm">{p.nombre}</span>
+                              <span className="text-[#1A1A1A]/70 text-sm">{p.nombre}</span>
                             </td>
                             <td className="py-3 pr-4 text-right">
                               <span className={`text-sm font-semibold ${sc(disponible)}`}>{disponible}</span>
-                              <span className="text-white/20 text-xs ml-1">{p.unidad}</span>
+                              <span className="text-[#1A1A1A]/25 text-xs ml-1">{p.unidad}</span>
                             </td>
                             <td className="py-3 text-right">
                               <input
@@ -488,7 +488,7 @@ export default function InventoryDemo() {
                                 value={entregaForm[p.id]||''}
                                 onChange={e=>setEntregaForm(f=>({...f,[p.id]:Math.max(0,parseInt(e.target.value)||0)}))}
                                 placeholder="0"
-                                className={`w-20 bg-transparent border-b text-sm text-right py-1 px-1 focus:outline-none transition-colors ${excede ? 'border-red-500/50 text-red-400' : 'border-white/15 text-white focus:border-blue-400/50'}`}
+                                className={`w-20 bg-transparent border-b text-sm text-right py-1 px-1 focus:outline-none transition-colors ${excede ? 'border-red-400/50 text-red-500' : 'border-[#E5E5E5] text-[#1A1A1A] focus:border-blue-400/50'}`}
                               />
                             </td>
                           </tr>
@@ -499,17 +499,17 @@ export default function InventoryDemo() {
                 </div>
                 <div className="space-y-5">
                   <div>
-                    <div className="text-white/30 text-xs uppercase tracking-wider mb-1">Entrega</div>
-                    <div className="text-white/20 text-xs mb-3">{entregaVeh} → {PUNTOS_DATA.find(p=>p.id===entregaPunto)?.nombre}</div>
+                    <div className="text-[#1A1A1A]/30 text-xs uppercase tracking-wider mb-1">Entrega</div>
+                    <div className="text-[#1A1A1A]/25 text-xs mb-3">{entregaVeh} → {PUNTOS_DATA.find(p=>p.id===entregaPunto)?.nombre}</div>
                     {Object.entries(entregaForm).filter(([,q])=>q>0).length === 0
-                      ? <p className="text-white/15 text-sm">Sin productos aún</p>
+                      ? <p className="text-[#1A1A1A]/20 text-sm">Sin productos aún</p>
                       : Object.entries(entregaForm).filter(([,q])=>q>0).map(([id,qty]) => {
                           const p = PRODUCTOS.find(p=>p.id===parseInt(id))
                           const excede = qty > ((stockVehiculos[entregaVeh]||{})[parseInt(id)]||0)
                           return p ? (
                             <div key={id} className="flex items-baseline gap-2 text-sm mb-2">
-                              <span className="text-white/40 flex-1">{p.nombre}</span>
-                              <span className={`font-semibold ${excede ? 'text-red-400' : 'text-blue-400'}`}>{qty}</span>
+                              <span className="text-[#1A1A1A]/40 flex-1">{p.nombre}</span>
+                              <span className={`font-semibold ${excede ? 'text-red-500' : 'text-blue-500'}`}>{qty}</span>
                             </div>
                           ) : null
                         })
@@ -519,7 +519,7 @@ export default function InventoryDemo() {
                     onClick={confirmarEntrega}
                     disabled={!Object.values(entregaForm).some(q=>q>0) || Object.entries(entregaForm).some(([id,q])=>q>((stockVehiculos[entregaVeh]||{})[parseInt(id)]||0))}
                     className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
-                    style={{ background: '#60a5fa', color: '#111' }}
+                    style={{ background: '#60a5fa', color: '#fff' }}
                   >
                     <MapPin size={14}/> Confirmar Entrega
                   </button>
@@ -533,8 +533,8 @@ export default function InventoryDemo() {
       {vista === 'puntos' && (
         <div className="space-y-1">
           <div className="mb-6">
-            <h2 className="font-display font-bold text-white">Puntos de Venta</h2>
-            <p className="text-white/25 text-xs mt-0.5">Stock actualizado por entregas de vehículos</p>
+            <h2 className="font-display font-bold text-[#1A1A1A]">Puntos de Venta</h2>
+            <p className="text-[#1A1A1A]/30 text-xs mt-0.5">Stock actualizado por entregas de vehículos</p>
           </div>
           <div className="space-y-px">
             {PUNTOS_DATA.map(punto => {
@@ -546,20 +546,20 @@ export default function InventoryDemo() {
                 <div key={punto.id}>
                   <button
                     onClick={() => setPuntoOpen(isOpen ? null : punto.id)}
-                    className="w-full flex items-center gap-4 py-4 border-b border-white/6 hover:bg-white/2 transition-colors text-left px-1"
+                    className="w-full flex items-center gap-4 py-4 border-b border-[#E5E5E5] hover:bg-[#1A1A1A]/2 transition-colors text-left px-1"
                   >
-                    <MapPin size={14} className="text-blue-400/50 flex-shrink-0"/>
+                    <MapPin size={14} className="text-blue-400/60 flex-shrink-0"/>
                     <div className="flex-1 flex items-center gap-3 flex-wrap">
-                      <span className="text-white/80 text-sm font-medium">{punto.nombre}</span>
-                      <span className="text-white/20 text-xs">{punto.barrio}</span>
-                      {!punto.open && <span className="text-white/20 text-xs">cerrado</span>}
-                      {critico && <span className="text-red-400/70 text-xs">critico</span>}
-                      {!critico && bajo && <span className="text-orange-400/60 text-xs">stock bajo</span>}
+                      <span className="text-[#1A1A1A]/80 text-sm font-medium">{punto.nombre}</span>
+                      <span className="text-[#1A1A1A]/25 text-xs">{punto.barrio}</span>
+                      {!punto.open && <span className="text-[#1A1A1A]/25 text-xs">cerrado</span>}
+                      {critico && <span className="text-red-500/70 text-xs">critico</span>}
+                      {!critico && bajo && <span className="text-orange-500/60 text-xs">stock bajo</span>}
                     </div>
-                    {isOpen ? <ChevronUp size={14} className="text-white/25"/> : <ChevronDown size={14} className="text-white/25"/>}
+                    {isOpen ? <ChevronUp size={14} className="text-[#1A1A1A]/25"/> : <ChevronDown size={14} className="text-[#1A1A1A]/25"/>}
                   </button>
                   {isOpen && (
-                    <div className="py-5 px-1 border-b border-white/6">
+                    <div className="py-5 px-1 border-b border-[#E5E5E5]">
                       <StockRow stock={pStock}/>
                     </div>
                   )}
@@ -571,14 +571,14 @@ export default function InventoryDemo() {
       )}
 
       {log.length > 0 && (
-        <div className="pt-6 border-t border-white/6">
-          <div className="text-white/20 text-xs uppercase tracking-wider mb-4">Actividad reciente</div>
+        <div className="pt-6 border-t border-[#E5E5E5]">
+          <div className="text-[#1A1A1A]/25 text-xs uppercase tracking-wider mb-4">Actividad reciente</div>
           <div className="space-y-2">
             {log.map((l, i) => (
               <div key={i} className="flex items-center gap-3 text-xs">
-                <div className="w-1 h-1 bg-[#7DC242]/50 rounded-full flex-shrink-0"/>
-                <span className="text-white/40">{l.msg}</span>
-                <span className="text-white/15 ml-auto tabular-nums">{l.time}</span>
+                <div className="w-1 h-1 bg-[#D62B2B]/50 rounded-full flex-shrink-0"/>
+                <span className="text-[#1A1A1A]/40">{l.msg}</span>
+                <span className="text-[#1A1A1A]/20 ml-auto tabular-nums">{l.time}</span>
               </div>
             ))}
           </div>

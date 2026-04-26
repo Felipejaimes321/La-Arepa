@@ -8,36 +8,36 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #111111;
-  color: #fff;
+  background: #FAFAFA;
+  color: #1A1A1A;
   overflow-x: hidden;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #111; }
-::-webkit-scrollbar-thumb { background: #7DC242; border-radius: 3px; }
+::-webkit-scrollbar-track { background: #F0EBE0; }
+::-webkit-scrollbar-thumb { background: #D62B2B; border-radius: 3px; }
 
 /* Glass */
 .glass {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(229,229,229,0.8);
 }
 
-/* Gold text */
+/* Brand text helpers */
 .text-gold { color: #C9A227; }
-.text-green-brand { color: #7DC242; }
+.text-green-brand { color: #D62B2B; }
 
 /* Gradient text */
 .gradient-green {
-  background: linear-gradient(135deg, #7DC242, #9ED45A);
+  background: linear-gradient(135deg, #D62B2B, #E85555);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-gold {
-  background: linear-gradient(135deg, #C9A227, #E5C060);
+  background: linear-gradient(135deg, #D62B2B, #E85555);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -60,8 +60,8 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-3px);
-  border-color: rgba(125,194,66,0.35);
-  box-shadow: 0 8px 32px rgba(125,194,66,0.1);
+  border-color: rgba(214,43,43,0.25);
+  box-shadow: 0 8px 32px rgba(214,43,43,0.08);
 }
 
 /* POS tap */
@@ -69,7 +69,7 @@ body {
 
 /* Dot grid bg */
 .bg-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(26,26,26,0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
