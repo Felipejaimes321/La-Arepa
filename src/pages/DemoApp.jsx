@@ -30,7 +30,7 @@ export default function DemoApp() {
         <nav className="flex-1 px-3 py-4 space-y-1">
           {NAV.map(({ to, icon: Icon, label }) => (
             <NavLink key={to} to={to} end={to==='/demo'} className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-[#D62B2B]/8 text-[#D62B2B] border border-[#D62B2B]/20' : 'text-[#1A1A1A]/50 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5'}`
+              `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-[#16A34A]/8 text-[#16A34A] border border-[#16A34A]/20' : 'text-[#1A1A1A]/50 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5'}`
             }>
               <Icon size={17}/> {label}
             </NavLink>
@@ -45,14 +45,14 @@ export default function DemoApp() {
 
       {/* Mobile top bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E5E5E5] px-4 h-14 flex items-center justify-between">
-        <span className="font-display font-black text-[#D62B2B]">La Arepa</span>
+        <span className="font-display font-black text-[#16A34A]">La Arepa</span>
         <button onClick={() => setMobileOpen(!mobileOpen)} className="text-[#1A1A1A]">{mobileOpen ? <X/> : <MenuIcon2/>}</button>
       </div>
       {mobileOpen && (
         <div className="md:hidden fixed top-14 left-0 right-0 z-40 bg-white border-b border-[#E5E5E5] px-3 py-3 space-y-1">
           {NAV.map(({ to, icon: Icon, label }) => (
             <NavLink key={to} to={to} end={to==='/demo'} onClick={() => setMobileOpen(false)}
-              className={({ isActive }) => `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-[#D62B2B]/8 text-[#D62B2B]' : 'text-[#1A1A1A]/50'}`}>
+              className={({ isActive }) => `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-[#16A34A]/8 text-[#16A34A]' : 'text-[#1A1A1A]/50'}`}>
               <Icon size={17}/>{label}
             </NavLink>
           ))}

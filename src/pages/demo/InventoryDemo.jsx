@@ -24,7 +24,7 @@ const PUNTOS_DATA = [
 ]
 
 function stockColor(qty) {
-  if (qty < 5)  return 'text-[#D62B2B]'
+  if (qty < 5)  return 'text-[#16A34A]'
   if (qty < 20) return 'text-orange-500'
   return 'text-[#1A1A1A]'
 }
@@ -81,6 +81,29 @@ export default function InventoryDemo() {
   const [bodegaVeh, setBodegaVeh] = useState('V01')
   const [bodegaForm, setBodegaForm] = useState({})
   const [bodegaMensaje, setBodegaMensaje] = useState(null)
+
+  const [ingresoForm, setIngresoForm] = useState({})
+  const [ingresoMensaje, setIngresoMensaje] = useState(null)
+
+  const ingresarBodega = () => {
+    const productos = Object.fromEntries(
+      Object.entries(ingresoForm)
+        .map(([id, q]) => [parseInt(id), parseInt(q) || 0])
+        .filter(([, q]) => q > 0)
+    )
+    if (!Object.keys(productos).length) return
+
+    setStockBodega(s => {
+      const n = { ...s }
+      Object.entries(productos).forEach(([id, q]) => { n[id] = (n[id] || 0) + q })
+      return n
+    })
+
+    const totalItems = Object.values(productos).reduce((a, b) => a + b, 0)
+    setIngresoMensaje(`Ingreso registrado exitosamente (${totalItems} items)`)
+    setIngresoForm({})
+    addLog('Bodega', `Ingresó nuevo stock (${totalItems} items)`)
+  }
 
   const crearOrden = () => {
     const productos = Object.fromEntries(
@@ -207,10 +230,10 @@ export default function InventoryDemo() {
           {TABS.map(tab => (
             <button
               key={tab.id}
-              onClick={() => { setVista(tab.id); setBodegaMensaje(null); setConductorMensaje(null) }}
+              onClick={() => { setVista(tab.id); setBodegaMensaje(null); setConductorMensaje(null); setIngresoMensaje(null) }}
               className={`pb-3 text-sm font-medium transition-all -mb-px ${
                 vista === tab.id
-                  ? 'border-b-2 border-[#D62B2B] text-[#D62B2B]'
+                  ? 'border-b-2 border-[#16A34A] text-[#16A34A]'
                   : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]/60 border-b-2 border-transparent'
               }`}
             >
@@ -231,6 +254,11 @@ export default function InventoryDemo() {
             bodegaMensaje={bodegaMensaje}
             setBodegaMensaje={setBodegaMensaje}
             crearOrden={crearOrden}
+            ingresoForm={ingresoForm}
+            setIngresoForm={setIngresoForm}
+            ingresoMensaje={ingresoMensaje}
+            setIngresoMensaje={setIngresoMensaje}
+            ingresarBodega={ingresarBodega}
           />
         )}
 
@@ -273,6 +301,7 @@ function VistaBodega({
   stockBodega, stockVehiculos, ordenesDespacho,
   bodegaVeh, setBodegaVeh, bodegaForm, setBodegaForm,
   bodegaMensaje, setBodegaMensaje, crearOrden,
+  ingresoForm, setIngresoForm, ingresoMensaje, setIngresoMensaje, ingresarBodega
 }) {
   const driver = VEHICLES_DATA.find(v => v.id === bodegaVeh)?.driver
 
@@ -288,6 +317,86 @@ function VistaBodega({
           </span>
         </div>
         <StockGrid stock={stockBodega} />
+      </div>
+
+      <SectionDivider />
+
+      <div>
+        <h3 className="font-display font-bold text-[#1A1A1A] mb-1">Ingresar Stock a Bodega</h3>
+        <p className="text-[#1A1A1A]/35 text-xs mb-6">
+          Añade nuevos productos al inventario disponible en la bodega central.
+        </p>
+
+        {ingresoMensaje ? (
+          <div className="space-y-4">
+            <div className="p-4 rounded-lg border border-[#E5E5E5] bg-white">
+              <p className="text-green-600 text-sm font-medium">{ingresoMensaje}</p>
+            </div>
+            <button
+              onClick={() => setIngresoMensaje(null)}
+              className="px-4 py-2 border border-[#E5E5E5] bg-white text-[#1A1A1A] text-sm rounded-lg hover:border-[#1A1A1A]/20 transition-colors"
+            >
+              Nuevo ingreso
+            </button>
+          </div>
+        ) : (
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-[#E5E5E5]">
+                    <th className="text-left text-[#1A1A1A]/30 text-xs font-medium pb-2 pr-4">Producto</th>
+                    <th className="text-right text-[#1A1A1A]/30 text-xs font-medium pb-2">Cantidad a ingresar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PRODUCTOS.map(p => (
+                    <tr key={p.id} className="border-b border-[#E5E5E5]">
+                      <td className="py-3 pr-4">
+                        <span className="text-[#1A1A1A]/70 text-sm">{p.nombre}</span>
+                      </td>
+                      <td className="py-3 text-right">
+                        <input
+                          type="number"
+                          min="0"
+                          value={ingresoForm[p.id] || ''}
+                          onChange={e => setIngresoForm(f => ({ ...f, [p.id]: e.target.value }))}
+                          placeholder="0"
+                          className="w-24 bg-transparent border-b border-[#E5E5E5] text-[#1A1A1A] text-sm text-right py-1 px-1 focus:outline-none focus:border-[#16A34A]/40 transition-colors"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="space-y-5">
+              <div>
+                <div className="text-[#1A1A1A]/30 text-xs uppercase tracking-wider mb-1">Resumen de ingreso</div>
+                {Object.entries(ingresoForm).filter(([, q]) => parseInt(q) > 0).length === 0
+                  ? <p className="text-[#1A1A1A]/20 text-sm">Sin productos</p>
+                  : Object.entries(ingresoForm).filter(([, q]) => parseInt(q) > 0).map(([id, qty]) => {
+                      const p = PRODUCTOS.find(p => p.id === parseInt(id))
+                      return p ? (
+                        <div key={id} className="flex items-baseline gap-2 text-sm mb-2">
+                          <span className="text-[#1A1A1A]/40 flex-1">{p.nombre}</span>
+                          <span className="font-semibold tabular-nums text-[#1A1A1A]">{qty}</span>
+                        </div>
+                      ) : null
+                    })
+                }
+              </div>
+              <button
+                onClick={ingresarBodega}
+                disabled={!Object.values(ingresoForm).some(q => parseInt(q) > 0)}
+                className="w-full py-2.5 rounded-lg font-semibold text-sm text-[#1A1A1A] border border-[#E5E5E5] hover:bg-[#F5F5F5] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              >
+                Registrar Ingreso
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       <SectionDivider />
@@ -318,7 +427,7 @@ function VistaBodega({
                 <select
                   value={bodegaVeh}
                   onChange={e => { setBodegaVeh(e.target.value); setBodegaForm({}) }}
-                  className="flex-1 bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#D62B2B]/40 transition-colors"
+                  className="flex-1 bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#16A34A]/40 transition-colors"
                 >
                   {VEHICLES_DATA.map(v => (
                     <option key={v.id} value={v.id}>{v.id} — {v.driver} ({v.route})</option>
@@ -358,8 +467,8 @@ function VistaBodega({
                             placeholder="0"
                             className={`w-20 bg-transparent border-b text-sm text-right py-1 px-1 focus:outline-none transition-colors ${
                               excede
-                                ? 'border-[#D62B2B] text-[#D62B2B]'
-                                : 'border-[#E5E5E5] text-[#1A1A1A] focus:border-[#D62B2B]/40'
+                                ? 'border-[#16A34A] text-[#16A34A]'
+                                : 'border-[#E5E5E5] text-[#1A1A1A] focus:border-[#16A34A]/40'
                             }`}
                           />
                         </td>
@@ -382,7 +491,7 @@ function VistaBodega({
                       return p ? (
                         <div key={id} className="flex items-baseline gap-2 text-sm mb-2">
                           <span className="text-[#1A1A1A]/40 flex-1">{p.nombre}</span>
-                          <span className={`font-semibold tabular-nums ${excede ? 'text-[#D62B2B]' : 'text-[#1A1A1A]'}`}>{qty}</span>
+                          <span className={`font-semibold tabular-nums ${excede ? 'text-[#16A34A]' : 'text-[#1A1A1A]'}`}>{qty}</span>
                         </div>
                       ) : null
                     })
@@ -394,7 +503,7 @@ function VistaBodega({
                   !Object.values(bodegaForm).some(q => parseInt(q) > 0) ||
                   Object.entries(bodegaForm).some(([id, q]) => parseInt(q) > (stockBodega[parseInt(id)] || 0))
                 }
-                className="w-full py-2.5 rounded-lg font-semibold text-sm text-white bg-[#D62B2B] disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+                className="w-full py-2.5 rounded-lg font-semibold text-sm text-white bg-[#16A34A] disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
               >
                 Crear Orden
               </button>
@@ -461,7 +570,7 @@ function VistaConductor({
           <select
             value={conductorId}
             onChange={e => { setConductorId(e.target.value); setEntregaForm({}); setConductorMensaje(null) }}
-            className="bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#D62B2B]/40 transition-colors"
+            className="bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#16A34A]/40 transition-colors"
           >
             {VEHICLES_DATA.map(v => (
               <option key={v.id} value={v.id}>{v.driver} ({v.id})</option>
@@ -521,7 +630,7 @@ function VistaConductor({
                 </div>
                 <button
                   onClick={() => aceptarCarga(orden)}
-                  className="px-5 py-2 rounded-lg font-semibold text-sm text-white bg-[#D62B2B] transition-opacity hover:opacity-90"
+                  className="px-5 py-2 rounded-lg font-semibold text-sm text-white bg-[#16A34A] transition-opacity hover:opacity-90"
                 >
                   Aceptar Carga
                 </button>
@@ -553,7 +662,7 @@ function VistaConductor({
               <select
                 value={entregaPunto}
                 onChange={e => { setEntregaPunto(parseInt(e.target.value)); setEntregaForm({}) }}
-                className="flex-1 bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#D62B2B]/40 transition-colors"
+                className="flex-1 bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#16A34A]/40 transition-colors"
               >
                 {PUNTOS_DATA.map(p => (
                   <option key={p.id} value={p.id}>{p.nombre}</option>
@@ -593,8 +702,8 @@ function VistaConductor({
                           placeholder="0"
                           className={`w-20 bg-transparent border-b text-sm text-right py-1 px-1 focus:outline-none transition-colors ${
                             excede
-                              ? 'border-[#D62B2B] text-[#D62B2B]'
-                              : 'border-[#E5E5E5] text-[#1A1A1A] focus:border-[#D62B2B]/40'
+                              ? 'border-[#16A34A] text-[#16A34A]'
+                              : 'border-[#E5E5E5] text-[#1A1A1A] focus:border-[#16A34A]/40'
                           }`}
                         />
                       </td>
@@ -619,7 +728,7 @@ function VistaConductor({
                     return p ? (
                       <div key={id} className="flex items-baseline gap-2 text-sm mb-2">
                         <span className="text-[#1A1A1A]/40 flex-1">{p.nombre}</span>
-                        <span className={`font-semibold tabular-nums ${excede ? 'text-[#D62B2B]' : 'text-[#1A1A1A]'}`}>{qty}</span>
+                        <span className={`font-semibold tabular-nums ${excede ? 'text-[#16A34A]' : 'text-[#1A1A1A]'}`}>{qty}</span>
                       </div>
                     ) : null
                   })
@@ -631,7 +740,7 @@ function VistaConductor({
                 !Object.values(entregaForm).some(q => parseInt(q) > 0) ||
                 Object.entries(entregaForm).some(([id, q]) => parseInt(q) > (vStock[parseInt(id)] || 0))
               }
-              className="w-full py-2.5 rounded-lg font-semibold text-sm text-white bg-[#D62B2B] disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+              className="w-full py-2.5 rounded-lg font-semibold text-sm text-white bg-[#16A34A] disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
             >
               Registrar Entrega
             </button>
@@ -664,7 +773,7 @@ function VistaPunto({
           <select
             value={puntoId}
             onChange={e => setPuntoId(parseInt(e.target.value))}
-            className="bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#D62B2B]/40 transition-colors"
+            className="bg-white border border-[#E5E5E5] text-[#1A1A1A] text-sm py-2 px-3 rounded-lg focus:outline-none focus:border-[#16A34A]/40 transition-colors"
           >
             {PUNTOS_DATA.map(p => (
               <option key={p.id} value={p.id}>{p.nombre}</option>
@@ -677,7 +786,7 @@ function VistaPunto({
             <div className="text-[#1A1A1A]/30 text-xs">{punto?.barrio}</div>
           </div>
           {nBadge > 0 && (
-            <div className="w-6 h-6 rounded-full bg-[#D62B2B] flex items-center justify-center">
+            <div className="w-6 h-6 rounded-full bg-[#16A34A] flex items-center justify-center">
               <span className="text-white text-xs font-bold">{nBadge}</span>
             </div>
           )}
@@ -701,7 +810,7 @@ function VistaPunto({
               return (
                 <div
                   key={entrega.id}
-                  className="p-5 rounded-lg border border-[#D62B2B]/30 bg-white space-y-4"
+                  className="p-5 rounded-lg border border-[#16A34A]/30 bg-white space-y-4"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -726,7 +835,7 @@ function VistaPunto({
                   </div>
                   <button
                     onClick={() => confirmarRecepcion(entrega)}
-                    className="px-5 py-2 rounded-lg font-semibold text-sm text-white bg-[#D62B2B] transition-opacity hover:opacity-90"
+                    className="px-5 py-2 rounded-lg font-semibold text-sm text-white bg-[#16A34A] transition-opacity hover:opacity-90"
                   >
                     Confirmar Recepción
                   </button>
@@ -756,7 +865,7 @@ function LogActividad({ log }) {
       <div className="space-y-2">
         {log.map((l, i) => (
           <div key={i} className="flex items-center gap-3 text-xs">
-            <div className="w-1 h-1 rounded-full bg-[#D62B2B]/40 flex-shrink-0" />
+            <div className="w-1 h-1 rounded-full bg-[#16A34A]/40 flex-shrink-0" />
             <span className="text-[#1A1A1A]/50 font-medium">{l.actor}</span>
             <span className="text-[#1A1A1A]/35">—</span>
             <span className="text-[#1A1A1A]/40 flex-1">{l.accion}</span>

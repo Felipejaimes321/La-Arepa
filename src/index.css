@@ -16,7 +16,7 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #F0EBE0; }
-::-webkit-scrollbar-thumb { background: #D62B2B; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #16A34A; border-radius: 3px; }
 
 /* Glass */
 .glass {
@@ -27,17 +27,17 @@ body {
 
 /* Brand text helpers */
 .text-gold { color: #C9A227; }
-.text-green-brand { color: #D62B2B; }
+.text-green-brand { color: #16A34A; }
 
 /* Gradient text */
 .gradient-green {
-  background: linear-gradient(135deg, #D62B2B, #E85555);
+  background: linear-gradient(135deg, #16A34A, #E85555);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-gold {
-  background: linear-gradient(135deg, #D62B2B, #E85555);
+  background: linear-gradient(135deg, #16A34A, #E85555);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

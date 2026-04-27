@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react' // Triggering hot reload
 import { useNavigate } from 'react-router-dom'
 import { MapPin, ChevronRight, Menu as MenuIcon, X, Check, Phone } from 'lucide-react'
 
@@ -40,9 +40,9 @@ function useFade() {
 
 /* ── Logo ────────────────────────────────────────────────────── */
 function Logo({ size = 'md' }) {
-  const h = size === 'sm' ? 42 : 52
+  const h = size === 'sm' ? 64 : 96
   return (
-    <img src="/logo.png" alt="La Arepa · Chorizos & Bebidas" style={{height: h, width: 'auto', maxWidth: 200, objectFit: 'contain'}} />
+    <img src="/logo.png" alt="La Arepa · Chorizos & Bebidas" style={{height: h, width: 'auto', maxWidth: 350, objectFit: 'contain'}} />
   )
 }
 
@@ -58,14 +58,14 @@ function Navbar() {
   const links = [['Menú','#menu'],['Puntos','#puntos'],['Franquicias','#franquicias']]
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md border-b border-[#E5E5E5]' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-5 h-20 flex items-center justify-between">
         <Logo size="sm" />
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {links.map(([l, h]) => (
             <a key={l} href={h} className="text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors">{l}</a>
           ))}
         </div>
-        <button onClick={() => nav('/demo')} className="hidden md:block bg-[#D62B2B] text-white font-bold px-5 py-2 rounded-full text-sm hover:bg-[#B82222] transition-all hover:scale-105 active:scale-95">
+        <button onClick={() => nav('/demo')} className="hidden md:block bg-[#16A34A] text-white font-bold px-5 py-2 rounded-full text-sm hover:bg-[#15803D] transition-all hover:scale-105 active:scale-95">
           Ingresar
         </button>
         <button className="md:hidden text-[#1A1A1A] p-1" onClick={() => setOpen(!open)}>
@@ -77,7 +77,7 @@ function Navbar() {
           {links.map(([l, h]) => (
             <a key={l} href={h} className="text-[#1A1A1A]/70 text-sm font-medium" onClick={() => setOpen(false)}>{l}</a>
           ))}
-          <button onClick={() => nav('/demo')} className="bg-[#D62B2B] text-white font-bold px-4 py-2.5 rounded-full text-sm">Ingresar</button>
+          <button onClick={() => nav('/demo')} className="bg-[#16A34A] text-white font-bold px-4 py-2.5 rounded-full text-sm">Ingresar</button>
         </div>
       )}
     </nav>
@@ -89,11 +89,11 @@ function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center text-center px-5 bg-grid overflow-hidden" style={{background:'#FAFAFA'}}>
       <div className="absolute inset-0 bg-gradient-to-b from-[#F5F0E8] via-[#FAFAFA] to-[#FAFAFA]" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#D62B2B]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-20 w-64 h-64 bg-[#D62B2B]/4 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#16A34A]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-20 w-64 h-64 bg-[#16A34A]/4 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 border border-[#D62B2B]/30 rounded-full px-4 py-1.5 text-[#D62B2B] text-xs font-semibold tracking-widest uppercase mb-8">
+        <div className="inline-flex items-center gap-2 border border-[#16A34A]/30 rounded-full px-4 py-1.5 text-[#16A34A] text-xs font-semibold tracking-widest uppercase mb-8">
           Sabor Colombiano Auténtico
         </div>
 
@@ -107,7 +107,7 @@ function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <a href="#menu" className="bg-[#D62B2B] text-white font-bold px-8 py-4 rounded-xl text-base hover:bg-[#B82222] transition-all hover:scale-105 active:scale-95">
+          <a href="#menu" className="bg-[#16A34A] text-white font-bold px-8 py-4 rounded-xl text-base hover:bg-[#15803D] transition-all hover:scale-105 active:scale-95">
             Ver el menú
           </a>
           <a href="#puntos" className="border border-[#1A1A1A]/20 text-[#1A1A1A] font-semibold px-8 py-4 rounded-xl text-base hover:bg-[#1A1A1A]/5 transition-all">
@@ -146,7 +146,7 @@ function MenuSection() {
     <section id="menu" className="py-24 px-5" style={{background:'#FAFAFA'}}>
       <div className="max-w-5xl mx-auto section-fade" ref={ref}>
         <div className="text-center mb-12">
-          <span className="text-[#D62B2B] text-xs font-semibold tracking-widest uppercase">Nuestros productos</span>
+          <span className="text-[#16A34A] text-xs font-semibold tracking-widest uppercase">Nuestros productos</span>
           <h2 className="font-display font-black text-4xl md:text-5xl text-[#1A1A1A] mt-3">El menú</h2>
           <p className="text-[#1A1A1A]/40 mt-3 max-w-lg mx-auto">Hecho con ingredientes frescos, preparado con amor. Igual de rico en todos nuestros puntos.</p>
         </div>
@@ -154,7 +154,7 @@ function MenuSection() {
         <div className="flex justify-center gap-2 mb-10 flex-wrap">
           {cats.map(c => (
             <button key={c} onClick={() => setCat(c)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${cat === c ? 'bg-[#D62B2B] text-white' : 'border border-[#1A1A1A]/12 text-[#1A1A1A]/50 hover:border-[#1A1A1A]/25 hover:text-[#1A1A1A]'}`}>
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${cat === c ? 'bg-[#16A34A] text-white' : 'border border-[#1A1A1A]/12 text-[#1A1A1A]/50 hover:border-[#1A1A1A]/25 hover:text-[#1A1A1A]'}`}>
               {c}
             </button>
           ))}
@@ -166,7 +166,7 @@ function MenuSection() {
               <div className="text-4xl mb-3">{p.emoji}</div>
               <div className="font-semibold text-[#1A1A1A] text-sm leading-snug mb-1">{p.name}</div>
               <div className="text-[#1A1A1A]/40 text-xs mb-3 leading-relaxed">{p.desc}</div>
-              <div className="font-display font-bold text-[#D62B2B] text-lg">${p.price.toLocaleString('es-CO')}</div>
+              <div className="font-display font-bold text-[#16A34A] text-lg">${p.price.toLocaleString('es-CO')}</div>
             </div>
           ))}
         </div>
@@ -191,17 +191,17 @@ function MapSection() {
     <section id="puntos" className="py-24 px-5" style={{background:'#F0EBE0'}}>
       <div className="max-w-5xl mx-auto section-fade" ref={ref}>
         <div className="mb-12">
-          <span className="text-[#D62B2B] text-xs font-semibold tracking-widest uppercase">Encuéntranos</span>
+          <span className="text-[#16A34A] text-xs font-semibold tracking-widest uppercase">Encuéntranos</span>
           <h2 className="font-display font-black text-4xl md:text-5xl text-[#1A1A1A] mt-3">El punto más cercano</h2>
           <p className="text-[#1A1A1A]/40 mt-2 max-w-xl">Más de 50 puntos en toda la ciudad. Ingresa tu dirección y encuentra el más cercano.</p>
         </div>
 
         <div className="relative bg-white border border-[#E5E5E5] rounded-2xl overflow-hidden mb-6" style={{height: 340}}>
-          <div className="absolute inset-0 opacity-5" style={{backgroundImage:'linear-gradient(#D62B2B 1px,transparent 1px),linear-gradient(90deg,#D62B2B 1px,transparent 1px)',backgroundSize:'36px 36px'}} />
+          <div className="absolute inset-0 opacity-5" style={{backgroundImage:'linear-gradient(#16A34A 1px,transparent 1px),linear-gradient(90deg,#16A34A 1px,transparent 1px)',backgroundSize:'36px 36px'}} />
 
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-80">
             <div className="flex items-center gap-2 bg-white border border-[#E5E5E5] rounded-xl px-4 py-3 shadow-sm">
-              <div className="w-2 h-2 bg-[#D62B2B] rounded-full flex-shrink-0" />
+              <div className="w-2 h-2 bg-[#16A34A] rounded-full flex-shrink-0" />
               <input value={search} onChange={e => setSearch(e.target.value)}
                 placeholder="Buscar por dirección o barrio..."
                 className="bg-transparent text-[#1A1A1A] text-sm flex-1 focus:outline-none placeholder-[#1A1A1A]/30" />
@@ -213,20 +213,20 @@ function MapSection() {
               className="absolute group"
               style={{left:`${p.x}%`, top:`${p.y}%`, transform:'translate(-50%,-50%)'}}>
               <div className="relative">
-                <div className={`w-4 h-4 rounded-full border-2 transition-all ${sel?.id === p.id ? 'scale-150 bg-[#D62B2B] border-white' : 'bg-[#D62B2B]/70 border-[#D62B2B] hover:scale-125'}`} />
-                {sel?.id === p.id && <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#D62B2B]/30 ping2" />}
+                <div className={`w-4 h-4 rounded-full border-2 transition-all ${sel?.id === p.id ? 'scale-150 bg-[#16A34A] border-white' : 'bg-[#16A34A]/70 border-[#16A34A] hover:scale-125'}`} />
+                {sel?.id === p.id && <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#16A34A]/30 ping2" />}
               </div>
             </button>
           ))}
 
           {sel && (
-            <div className="absolute bottom-4 left-4 right-4 bg-white border border-[#D62B2B]/20 rounded-xl p-4 shadow-sm">
+            <div className="absolute bottom-4 left-4 right-4 bg-white border border-[#16A34A]/20 rounded-xl p-4 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="font-semibold text-[#1A1A1A] text-sm">{sel.name}</div>
                   <div className="text-[#1A1A1A]/40 text-xs mt-0.5">{sel.dir}</div>
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${sel.open ? 'bg-[#D62B2B]/10 text-[#D62B2B]' : 'bg-[#1A1A1A]/5 text-[#1A1A1A]/40'}`}>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${sel.open ? 'bg-[#16A34A]/10 text-[#16A34A]' : 'bg-[#1A1A1A]/5 text-[#1A1A1A]/40'}`}>
                   {sel.open ? 'Abierto ahora' : 'Cerrado'}
                 </span>
               </div>
@@ -237,10 +237,10 @@ function MapSection() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {featured.map(p => (
             <div key={p.id} onClick={() => setSel(p)}
-              className="bg-white border border-[#E5E5E5] rounded-xl p-4 cursor-pointer hover:border-[#D62B2B]/30 transition-all">
+              className="bg-white border border-[#E5E5E5] rounded-xl p-4 cursor-pointer hover:border-[#16A34A]/30 transition-all">
               <div className="font-semibold text-[#1A1A1A] text-sm mb-0.5">{p.name}</div>
               <div className="text-[#1A1A1A]/40 text-xs mb-3">{p.dir}</div>
-              <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${p.open ? 'bg-[#D62B2B]/10 text-[#D62B2B]' : 'bg-[#1A1A1A]/5 text-[#1A1A1A]/40'}`}>
+              <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${p.open ? 'bg-[#16A34A]/10 text-[#16A34A]' : 'bg-[#1A1A1A]/5 text-[#1A1A1A]/40'}`}>
                 {p.open ? 'Abierto ahora' : 'Cierra 8pm'}
               </span>
             </div>
@@ -263,7 +263,7 @@ function Franquicias() {
         <div className="bg-white border border-[#E5E5E5] rounded-2xl overflow-hidden shadow-sm">
           <div className="grid md:grid-cols-2">
             <div className="p-8 md:p-12">
-              <span className="text-[#D62B2B] text-xs font-semibold tracking-widest uppercase">Franquicias</span>
+              <span className="text-[#16A34A] text-xs font-semibold tracking-widest uppercase">Franquicias</span>
               <h2 className="font-display font-black text-3xl md:text-4xl text-[#1A1A1A] mt-3 mb-4 leading-tight">
                 Abre tu propio<br />punto de venta
               </h2>
@@ -278,7 +278,7 @@ function Franquicias() {
                   'Marca reconocida con más de 12 años en el mercado',
                 ].map((b, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#D62B2B] flex-shrink-0 mt-2" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#16A34A] flex-shrink-0 mt-2" />
                     <span className="text-[#1A1A1A]/60 text-sm leading-relaxed">{b}</span>
                   </div>
                 ))}
@@ -288,8 +288,8 @@ function Franquicias() {
             <div className="p-8 md:p-12 border-t md:border-t-0 md:border-l border-[#E5E5E5]">
               {sent ? (
                 <div className="h-full flex flex-col items-center justify-center text-center min-h-64">
-                  <div className="w-16 h-16 bg-[#D62B2B]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Check size={28} className="text-[#D62B2B]" />
+                  <div className="w-16 h-16 bg-[#16A34A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Check size={28} className="text-[#16A34A]" />
                   </div>
                   <h3 className="font-display font-bold text-[#1A1A1A] text-xl mb-2">¡Solicitud enviada!</h3>
                   <p className="text-[#1A1A1A]/40 text-sm">Nos pondremos en contacto en menos de 24 horas.</p>
@@ -302,24 +302,24 @@ function Franquicias() {
                       <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Nombre completo</label>
                       <input required value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})}
                         placeholder="Tu nombre"
-                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#D62B2B]/40 transition-colors" />
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#16A34A]/40 transition-colors" />
                     </div>
                     <div>
                       <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Teléfono / WhatsApp</label>
                       <input required value={form.telefono} onChange={e => setForm({...form, telefono: e.target.value})}
                         placeholder="+57 300 000 0000"
-                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#D62B2B]/40 transition-colors" />
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#16A34A]/40 transition-colors" />
                     </div>
                     <div>
                       <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Ciudad de interés</label>
                       <input required value={form.ciudad} onChange={e => setForm({...form, ciudad: e.target.value})}
                         placeholder="Bogotá, Medellín..."
-                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#D62B2B]/40 transition-colors" />
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm placeholder-[#1A1A1A]/25 focus:outline-none focus:border-[#16A34A]/40 transition-colors" />
                     </div>
                     <div>
                       <label className="text-[#1A1A1A]/40 text-xs mb-1.5 block">Capital disponible</label>
                       <select value={form.capital} onChange={e => setForm({...form, capital: e.target.value})}
-                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm focus:outline-none focus:border-[#D62B2B]/40 transition-colors">
+                        className="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#1A1A1A] text-sm focus:outline-none focus:border-[#16A34A]/40 transition-colors">
                         <option>Menos de $10M COP</option>
                         <option>$10M – $20M COP</option>
                         <option>$20M – $30M COP</option>
@@ -327,7 +327,7 @@ function Franquicias() {
                       </select>
                     </div>
                     <button type="submit"
-                      className="w-full bg-[#D62B2B] text-white font-bold py-3.5 rounded-xl hover:bg-[#B82222] transition-all hover:scale-[1.02] active:scale-95 text-sm mt-2">
+                      className="w-full bg-[#16A34A] text-white font-bold py-3.5 rounded-xl hover:bg-[#15803D] transition-all hover:scale-[1.02] active:scale-95 text-sm mt-2">
                       Solicitar información
                     </button>
                   </form>
@@ -355,7 +355,7 @@ function Footer() {
           <a href="#menu" className="text-[#1A1A1A]/40 text-sm hover:text-[#1A1A1A] transition-colors">Menú</a>
           <a href="#puntos" className="text-[#1A1A1A]/40 text-sm hover:text-[#1A1A1A] transition-colors">Puntos</a>
           <a href="#franquicias" className="text-[#1A1A1A]/40 text-sm hover:text-[#1A1A1A] transition-colors">Franquicias</a>
-          <button onClick={() => nav('/demo')} className="bg-[#D62B2B] text-white font-bold px-5 py-2 rounded-full text-sm hover:bg-[#B82222] transition-all">
+          <button onClick={() => nav('/demo')} className="bg-[#16A34A] text-white font-bold px-5 py-2 rounded-full text-sm hover:bg-[#15803D] transition-all">
             Ingresar
           </button>
         </div>

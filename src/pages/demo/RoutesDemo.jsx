@@ -60,7 +60,7 @@ export default function RoutesDemo() {
         {VEHICLES.map(v => {
           const s = statusConfig[v.status]
           return (
-            <button key={v.id} onClick={() => setSel(v)} className={`bg-white border rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 shadow-sm ${sel.id===v.id ? 'border-[#D62B2B]/30 bg-[#D62B2B]/4' : 'border-[#E5E5E5]'}`}>
+            <button key={v.id} onClick={() => setSel(v)} className={`bg-white border rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 shadow-sm ${sel.id===v.id ? 'border-[#16A34A]/30 bg-[#16A34A]/4' : 'border-[#E5E5E5]'}`}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-[#1A1A1A]/6 rounded-lg flex items-center justify-center"><Truck size={16} className="text-[#1A1A1A]/60"/></div>
@@ -77,7 +77,7 @@ export default function RoutesDemo() {
               <div className="text-[#1A1A1A] text-sm font-medium mb-0.5">{v.driver}</div>
               <div className="text-[#1A1A1A]/40 text-xs mb-3">{v.route}</div>
               <div className="w-full bg-[#E5E5E5] rounded-full h-1.5 overflow-hidden">
-                <div className="h-full bg-[#D62B2B] rounded-full transition-all" style={{width:`${v.progress}%`}}/>
+                <div className="h-full bg-[#16A34A] rounded-full transition-all" style={{width:`${v.progress}%`}}/>
               </div>
               <div className="flex justify-between text-xs text-[#1A1A1A]/40 mt-1">
                 <span>{v.stops.filter(s=>s.status==='entregado').length}/{v.stops.length} entregas</span>
@@ -91,8 +91,8 @@ export default function RoutesDemo() {
       <div className="grid lg:grid-cols-5 gap-5">
         <div className="lg:col-span-2 bg-white border border-[#E5E5E5] rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-[#D62B2B]/10 rounded-xl flex items-center justify-center">
-              <Navigation size={18} className="text-[#D62B2B]"/>
+            <div className="w-10 h-10 bg-[#16A34A]/10 rounded-xl flex items-center justify-center">
+              <Navigation size={18} className="text-[#16A34A]"/>
             </div>
             <div>
               <div className="text-[#1A1A1A] font-display font-bold">{sel.driver}</div>
@@ -139,7 +139,7 @@ export default function RoutesDemo() {
               )
             })}
             <div className="absolute" style={{left:'50%',top:'45%',transform:'translate(-50%,-50%)'}}>
-              <div className="bg-[#D62B2B] rounded-full p-2 shadow-lg animate-pulse">
+              <div className="bg-[#16A34A] rounded-full p-2 shadow-lg animate-pulse">
                 <Truck size={14} className="text-white"/>
               </div>
             </div>

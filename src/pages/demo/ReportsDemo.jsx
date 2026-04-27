@@ -39,7 +39,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       <div className="bg-white border border-[#E5E5E5] rounded-xl px-4 py-3 text-sm shadow-sm">
         <p className="text-[#1A1A1A]/60 mb-1">{label}</p>
         {payload.map((p, i) => (
-          <p key={i} className="font-bold" style={{color:p.color||'#D62B2B'}}>
+          <p key={i} className="font-bold" style={{color:p.color||'#16A34A'}}>
             {p.name==='ventas' ? `$${p.value.toLocaleString()}` : `${p.value} und`}
           </p>
         ))}
@@ -68,14 +68,14 @@ export default function ReportsDemo() {
         </div>
         <div className="flex gap-2">
           {PERIODS.map(p => (
-            <button key={p} onClick={() => setPeriod(p)} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${period===p?'bg-[#D62B2B] text-white':'bg-white border border-[#E5E5E5] text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}>{p}</button>
+            <button key={p} onClick={() => setPeriod(p)} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${period===p?'bg-[#16A34A] text-white':'bg-white border border-[#E5E5E5] text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}>{p}</button>
           ))}
         </div>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((k, i) => (
-          <div key={i} className="bg-white border border-[#E5E5E5] rounded-2xl p-4 hover:border-[#D62B2B]/20 transition-all shadow-sm">
+          <div key={i} className="bg-white border border-[#E5E5E5] rounded-2xl p-4 hover:border-[#16A34A]/20 transition-all shadow-sm">
             <div className="text-[#1A1A1A]/40 text-xs mb-1">{k.label}</div>
             <div className="font-display font-black text-xl text-[#1A1A1A] mb-1">{k.value}</div>
             <div className={`flex items-center gap-1 text-xs ${k.up?'text-green-600':'text-red-500'}`}>
@@ -93,14 +93,14 @@ export default function ReportsDemo() {
             <AreaChart data={weekData}>
               <defs>
                 <linearGradient id="gw" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#D62B2B" stopOpacity={0.15}/>
-                  <stop offset="95%" stopColor="#D62B2B" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#16A34A" stopOpacity={0.15}/>
+                  <stop offset="95%" stopColor="#16A34A" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <XAxis dataKey="dia" tick={{fill:'#1A1A1A40',fontSize:11}} axisLine={false} tickLine={false}/>
               <YAxis hide/>
               <Tooltip content={<CustomTooltip/>}/>
-              <Area type="monotone" dataKey="ventas" name="ventas" stroke="#D62B2B" strokeWidth={2} fill="url(#gw)"/>
+              <Area type="monotone" dataKey="ventas" name="ventas" stroke="#16A34A" strokeWidth={2} fill="url(#gw)"/>
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -160,7 +160,7 @@ export default function ReportsDemo() {
               <XAxis type="number" hide/>
               <YAxis type="category" dataKey="punto" tick={{fill:'#1A1A1A60',fontSize:11}} axisLine={false} tickLine={false} width={72}/>
               <Tooltip contentStyle={{background:'#fff',border:'1px solid #E5E5E5',borderRadius:'12px',color:'#1A1A1A'}} formatter={v=>`$${v.toLocaleString()}`}/>
-              <Bar dataKey="v" name="Ventas" fill="#D62B2B" radius={[0,6,6,0]}/>
+              <Bar dataKey="v" name="Ventas" fill="#16A34A" radius={[0,6,6,0]}/>
             </BarChart>
           </ResponsiveContainer>
         </div>

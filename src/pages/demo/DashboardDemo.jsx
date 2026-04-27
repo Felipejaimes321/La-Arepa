@@ -23,7 +23,7 @@ const ALERTAS = [
 
 function StatCard({ icon: Icon, label, value, sub, color }) {
   return (
-    <div className="bg-white border border-[#E5E5E5] rounded-2xl p-5 flex items-center gap-4 hover:border-[#D62B2B]/20 transition-all shadow-sm">
+    <div className="bg-white border border-[#E5E5E5] rounded-2xl p-5 flex items-center gap-4 hover:border-[#16A34A]/20 transition-all shadow-sm">
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
         <Icon size={22} className="text-white"/>
       </div>
@@ -51,7 +51,7 @@ export default function DashboardDemo() {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard icon={ShoppingCart} label="Ventas Hoy" value="$1.84M" sub="+12% vs ayer" color="bg-[#D62B2B]/80"/>
+        <StatCard icon={ShoppingCart} label="Ventas Hoy" value="$1.84M" sub="+12% vs ayer" color="bg-[#16A34A]/80"/>
         <StatCard icon={Package} label="Unidades vendidas" value="412" sub="de 550 despachadas" color="bg-blue-500/80"/>
         <StatCard icon={TrendingUp} label="Puntos activos" value="47/50" sub="3 sin conexión" color="bg-green-500/80"/>
         <StatCard icon={AlertCircle} label="Pagos pendientes" value="8" sub="Por validar" color="bg-orange-500/80"/>
@@ -67,14 +67,14 @@ export default function DashboardDemo() {
             <AreaChart data={salesData}>
               <defs>
                 <linearGradient id="gv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#D62B2B" stopOpacity={0.15}/>
-                  <stop offset="95%" stopColor="#D62B2B" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#16A34A" stopOpacity={0.15}/>
+                  <stop offset="95%" stopColor="#16A34A" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <XAxis dataKey="hora" tick={{ fill: '#1A1A1A40', fontSize: 11 }} axisLine={false} tickLine={false}/>
               <YAxis hide/>
               <Tooltip contentStyle={{ background:'#fff', border:'1px solid #E5E5E5', borderRadius:'12px', color:'#1A1A1A' }}/>
-              <Area type="monotone" dataKey="ventas" stroke="#D62B2B" strokeWidth={2} fill="url(#gv)"/>
+              <Area type="monotone" dataKey="ventas" stroke="#16A34A" strokeWidth={2} fill="url(#gv)"/>
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -86,7 +86,7 @@ export default function DashboardDemo() {
               <XAxis type="number" hide/>
               <YAxis type="category" dataKey="punto" tick={{ fill: '#1A1A1A60', fontSize: 11 }} axisLine={false} tickLine={false} width={65}/>
               <Tooltip contentStyle={{ background:'#fff', border:'1px solid #E5E5E5', borderRadius:'12px', color:'#1A1A1A' }}/>
-              <Bar dataKey="ventas" fill="#D62B2B" radius={[0,4,4,0]}/>
+              <Bar dataKey="ventas" fill="#16A34A" radius={[0,4,4,0]}/>
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -125,7 +125,7 @@ export default function DashboardDemo() {
                   <div className="text-[#1A1A1A] text-sm font-medium">{n}</div>
                   <div className="text-[#1A1A1A]/40 text-xs">{u}</div>
                 </div>
-                <div className="text-[#D62B2B] font-display font-bold text-sm">{v}</div>
+                <div className="text-[#16A34A] font-display font-bold text-sm">{v}</div>
                 <div className="text-[#1A1A1A]/30 text-xs w-5 text-center font-bold">#{i+1}</div>
               </div>
             ))}
